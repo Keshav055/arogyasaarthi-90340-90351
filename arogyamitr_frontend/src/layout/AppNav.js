@@ -4,7 +4,7 @@ import styles from "../AppTheme.module.css";
 
 /**
  * PUBLIC_INTERFACE
- * AppNav renders the app's top navigation bar with responsive mobile/desktop behavior.
+ * AppNav renders the app's top navigation bar with responsive mobile/desktop behavior, theme colors, and accessibility.
  */
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard" },
@@ -28,31 +28,129 @@ function AppNav({ isAuthenticated, onLogout }) {
     navigate(path);
   }
 
+  // Used to control active nav on mobile for color
+  const getMobileActiveStyle = (to) =>
+    window.location.pathname === to
+      ? {
+          background: "var(--accent)",
+          color: "var(--primary-dark)",
+          fontWeight: 700,
+          borderRadius: 9
+        }
+      : {
+          background: "transparent",
+          color: "var(--primary-text)",
+        };
+
   return (
-    <header className={styles.headerBar}>
-      <NavLink to="/" className={styles.logo} tabIndex={0} style={{ fontFamily: "Poppins,Segoe UI,sans-serif" }}>
-        <span role="img" aria-label="ArogyaMitr heartbeat">💚</span>
-        <span style={{color: "var(--primary)"}}>Arogya</span><span style={{color: "var(--secondary)"}}>Mitr</span>
+    <header
+      className={styles.headerBar}
+      style={{
+        background: "var(--header-bg, #e7f5ec)",
+        borderBottom: "1.5px solid var(--border)",
+        minHeight: 62,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        position: "sticky",
+        top: 0,
+        zIndex: 20,
+        padding: "0 1.5rem",
+        boxShadow: "0 2px 10px rgba(30,90,50,0.05)",
+      }}
+    >
+      <NavLink
+        to="/"
+        className={styles.logo}
+        tabIndex={0}
+        style={{
+          fontFamily: "Poppins,Segoe UI,sans-serif",
+          display: "flex",
+          alignItems: "center",
+          fontWeight: 700,
+          fontSize: "1.26rem",
+          letterSpacing: "0.01em",
+          textDecoration: "none",
+        }}
+      >
+        <span role="img" aria-label="ArogyaMitr heartbeat" style={{ fontSize: 23, marginRight: 3 }}>
+          💚
+        </span>
+        <span style={{ color: "var(--primary)" }}>Arogya</span>
+        <span style={{ color: "var(--secondary)" }}>Mitr</span>
       </NavLink>
 
       {/* Desktop nav */}
-      <nav className={styles.nav}>
+      <nav
+        className={styles.nav}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 11,
+        }}
+      >
         {isAuthenticated &&
           NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
-              className={({ isActive }) => isActive ? styles.navLinkActive : styles.navLink}
+              end
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }
+              style={({ isActive }) => ({
+                color: isActive
+                  ? "var(--primary)"
+                  : "var(--primary-text)",
+                background: isActive
+                  ? "var(--surface)"
+                  : "transparent",
+                borderRadius: isActive ? 9 : 7,
+                fontWeight: isActive ? 700 : 500,
+                padding: "8px 17px",
+                fontSize: "1.08rem",
+                textDecoration: "none",
+                lineHeight: 1.25,
+                transition: "background 0.15s,color 0.11s",
+                outline: "none",
+                border: "none",
+              })}
             >
               {item.label}
             </NavLink>
           ))}
         {!isAuthenticated && (
           <>
-            <NavLink to="/login" className={styles.navLink}>
+            <NavLink
+              to="/login"
+              className={styles.navLink}
+              style={{
+                color: "var(--primary-text)",
+                fontWeight: 500,
+                padding: "8px 17px",
+                fontSize: "1.08rem",
+                borderRadius: 7,
+                background: "transparent",
+                textDecoration: "none",
+                lineHeight: 1.25,
+              }}
+            >
               Login
             </NavLink>
-            <NavLink to="/signup" className={styles.navLink}>
+            <NavLink
+              to="/signup"
+              className={styles.navLink}
+              style={{
+                color: "var(--primary-text)",
+                fontWeight: 500,
+                padding: "8px 17px",
+                fontSize: "1.08rem",
+                borderRadius: 7,
+                background: "transparent",
+                textDecoration: "none",
+                lineHeight: 1.25,
+              }}
+            >
               Sign Up
             </NavLink>
           </>
@@ -62,19 +160,38 @@ function AppNav({ isAuthenticated, onLogout }) {
             className={styles.cta}
             onClick={onLogout}
             tabIndex={0}
+            style={{
+              background: "var(--primary)",
+              color: "#fff",
+              borderRadius: 9,
+              padding: "8px 18px",
+              fontWeight: 700,
+              border: "none",
+              marginLeft: "13px",
+              cursor: "pointer",
+              fontSize: "1.05rem",
+              boxShadow: "0 1px 5px rgba(44,166,90,0.08)",
+              transition: "background 0.17s, color 0.10s",
+            }}
           >
             Logout
           </button>
         )}
       </nav>
 
-      {/* Mobile nav toggle (hamburger) */}
+      {/* Mobile nav toggle */}
       <button
         className={styles.mobileNavToggle}
         aria-label={drawerOpen ? "Close menu" : "Open menu"}
         onClick={toggleDrawer}
         style={{
-          display: "none"
+          display: "none",
+          background: "none",
+          border: "none",
+          color: "var(--primary-text)",
+          fontSize: 28,
+          marginLeft: 14,
+          cursor: "pointer",
         }}
       >
         ☰
@@ -82,13 +199,66 @@ function AppNav({ isAuthenticated, onLogout }) {
       <span
         className={styles.mobileNavToggle}
         aria-label={drawerOpen ? "Close menu" : "Open menu"}
-        style={{ display: "block", background: "none", border: "none" }}
+        tabIndex={0}
+        style={{
+          display: "none", // Default hide on desktop, show via CSS below 900px
+          background: "none",
+          border: "none",
+          fontSize: 32,
+          lineHeight: 1,
+          marginLeft: 16,
+          color: "var(--primary-text)",
+          cursor: "pointer",
+        }}
         onClick={toggleDrawer}
+        onKeyDown={e => (e.key === "Enter" || e.key === " ") && toggleDrawer()}
       >☰</span>
 
+      {/* Responsive mobile nav drawer */}
       {drawerOpen && (
-        <div className={styles.mobileNavDrawer}>
-          <div className={styles.mobileNavLinks}>
+        <div
+          className={styles.mobileNavDrawer}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "99vw",
+            height: "100vh",
+            background: "var(--background, #fff)",
+            zIndex: 222,
+            boxShadow: "0 5px 55px 0 rgba(20,30,50,0.22)",
+            borderRight: "1.2px solid var(--border)",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className={styles.mobileNavLinks}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: 27,
+              width: "100%",
+              alignItems: "center"
+            }}
+          >
+            {/* Close button in drawer */}
+            <button
+              aria-label="Close menu"
+              onClick={toggleDrawer}
+              style={{
+                position: "absolute",
+                right: 16,
+                top: 14,
+                background: "none",
+                color: "var(--primary-text)",
+                border: "none",
+                fontSize: 34,
+                cursor: "pointer",
+              }}
+            >×</button>
             {isAuthenticated &&
               NAV_ITEMS.map((item) => (
                 <div
@@ -97,7 +267,19 @@ function AppNav({ isAuthenticated, onLogout }) {
                   tabIndex={0}
                   className={styles.mobileNavLink}
                   onClick={() => handleNavClick(item.to)}
-                  style={{ background: window.location.pathname === item.to ? "var(--accent)" : ""}}
+                  onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick(item.to)}
+                  style={{
+                    ...getMobileActiveStyle(item.to),
+                    width: "82vw",
+                    textAlign: "left",
+                    padding: "16px 19px",
+                    marginBottom: 6,
+                    fontWeight: 600,
+                    fontSize: "1.11rem",
+                    outline: "none",
+                    transition: "background 0.11s, color 0.13s",
+                    cursor: "pointer",
+                  }}
                 >
                   {item.label}
                 </div>
@@ -109,7 +291,16 @@ function AppNav({ isAuthenticated, onLogout }) {
                   tabIndex={0}
                   className={styles.mobileNavLink}
                   onClick={() => handleNavClick("/login")}
-                  style={{ background: window.location.pathname === "/login" ? "var(--accent)" : ""}}
+                  onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick("/login")}
+                  style={{
+                    ...getMobileActiveStyle("/login"),
+                    width: "82vw",
+                    textAlign: "left",
+                    padding: "16px 19px",
+                    marginBottom: 6,
+                    fontWeight: 600,
+                    fontSize: "1.11rem",
+                  }}
                 >
                   Login
                 </div>
@@ -118,7 +309,16 @@ function AppNav({ isAuthenticated, onLogout }) {
                   tabIndex={0}
                   className={styles.mobileNavLink}
                   onClick={() => handleNavClick("/signup")}
-                  style={{ background: window.location.pathname === "/signup" ? "var(--accent)" : ""}}
+                  onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick("/signup")}
+                  style={{
+                    ...getMobileActiveStyle("/signup"),
+                    width: "82vw",
+                    textAlign: "left",
+                    padding: "16px 19px",
+                    marginBottom: 6,
+                    fontWeight: 600,
+                    fontSize: "1.11rem",
+                  }}
                 >
                   Sign Up
                 </div>
@@ -128,7 +328,18 @@ function AppNav({ isAuthenticated, onLogout }) {
               <button
                 className={styles.cta}
                 onClick={onLogout}
-                style={{ width: "70%", margin: "0.6em auto 0", display: "block" }}
+                style={{
+                  width: "72vw",
+                  margin: "1.3em auto 0",
+                  display: "block",
+                  background: "var(--primary)",
+                  color: "#fff",
+                  borderRadius: 12,
+                  padding: "13px 0",
+                  fontSize: "1.09rem",
+                  fontWeight: 700,
+                  boxShadow: "0 1px 5px rgba(44,166,90,0.07)",
+                }}
               >
                 Logout
               </button>
@@ -136,6 +347,22 @@ function AppNav({ isAuthenticated, onLogout }) {
           </div>
         </div>
       )}
+      {/* Inline styles for responsive nav: show hamburger and hide desktop nav on mobile */}
+      <style>{`
+        @media (max-width: 900px) {
+          .${styles.nav} {
+            display: none !important;
+          }
+          .${styles.mobileNavToggle} {
+            display: block !important;
+          }
+        }
+        @media (min-width: 901px) {
+          .${styles.mobileNavToggle} {
+            display: none !important;
+          }
+        }
+      `}</style>
     </header>
   );
 }

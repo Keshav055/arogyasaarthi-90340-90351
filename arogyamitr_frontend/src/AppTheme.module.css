@@ -65,6 +65,180 @@ body {
     color 0.23s cubic-bezier(.4,0,.2,1);
 }
 
+/* HEADER BAR NAVIGATION */
+.headerBar {
+  background: var(--header-bg, #e7f5ec);
+  border-bottom: 1.5px solid var(--border);
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0 1.5rem; /* Responsive tweak if needed */
+  box-shadow: 0 2px 10px rgba(30,90,50,0.05);
+}
+
+/* Logo (text/icon left) */
+.logo {
+  font-family: Poppins, Segoe UI, sans-serif;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.26rem;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  outline: none;
+}
+
+/* Desktop navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+/* NavLink (inactive) */
+.navLink {
+  color: var(--primary-text);
+  font-weight: 500;
+  padding: 8px 17px;
+  font-size: 1.08rem;
+  border-radius: 7px;
+  background: transparent;
+  text-decoration: none;
+  line-height: 1.25;
+  transition: background 0.14s, color 0.11s;
+  border: none;
+  outline: none;
+}
+
+/* NavLink (active route) */
+.navLinkActive {
+  color: var(--primary) !important;
+  background: var(--surface);
+  border-radius: 9px;
+  font-weight: 700!important;
+  padding: 8px 17px;
+  font-size: 1.08rem;
+  text-decoration: none!important;
+  line-height: 1.25;
+  outline: none;
+  border: none;
+  transition: background 0.13s, color 0.15s;
+}
+
+.navLink:hover, .navLinkActive:hover, .navLink:focus, .navLinkActive:focus {
+  background: var(--accent, #FFC857) !important;
+  color: var(--primary-dark, #194524) !important;
+  outline: 2px solid var(--accent, #FFC857);
+  text-decoration: none;
+}
+
+/* Call-to-action/logout button */
+.cta {
+  background: var(--primary);
+  color: #fff !important;
+  border-radius: 9px;
+  padding: 8px 18px;
+  font-weight: 700;
+  border: none;
+  margin-left: 13px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  box-shadow: 0 1px 5px rgba(44,166,90,0.08);
+  transition: background 0.17s, color 0.12s;
+}
+.cta:hover, .cta:focus {
+  background: var(--primary-dark, #194524);
+  color: #fff !important;
+  outline: 2px solid var(--accent, #FFC857);
+}
+.cta:active {
+  background: var(--secondary);
+  color: #fff !important;
+}
+
+/* Mobile nav toggle (hamburger) */
+.mobileNavToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--primary-text);
+  font-size: 29px;
+  margin-left: 14px;
+  cursor: pointer;
+  position: relative;
+  z-index: 225;
+  outline: none;
+}
+.mobileNavToggle:focus {
+  color: var(--accent);
+  outline: 2px solid var(--accent, #FFC857);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none !important;
+  }
+  .mobileNavToggle {
+    display: block !important;
+  }
+}
+
+/* Mobile nav drawer panel */
+.mobileNavDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 99vw;
+  height: 100vh;
+  background: var(--background, #fff);
+  z-index: 222;
+  box-shadow: 0 5px 55px 0 rgba(20,30,50,0.22);
+  border-right: 1.2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  animation: drawerIn 0.23s cubic-bezier(.35,0,.6,1);
+}
+@keyframes drawerIn {
+  from { transform: translateX(-50vw); opacity: 0.38;}
+  to { transform: translateX(0); opacity: 1;}
+}
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 27px;
+  width: 100%;
+  align-items: center;
+}
+
+/* Mobile nav links (drawer) */
+.mobileNavLink {
+  width: 82vw;
+  text-align: left;
+  padding: 16px 19px;
+  margin-bottom: 6px;
+  border-radius: 9px;
+  color: var(--primary-text);
+  background: transparent;
+  font-weight: 600;
+  font-size: 1.11rem;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.09s, color 0.11s;
+  box-shadow: none;
+}
+
+.mobileNavLink:focus, .mobileNavLink:active {
+  background: var(--accent, #FFC857) !important;
+  color: var(--primary-dark, #194524) !important;
+  outline: 2px solid var(--accent, #FFC857);
+}
+
+/* END NAVIGATION/HEADER BAR STYLES */
+
 /* App containers and cards */
 .container,
 .chartCard,
