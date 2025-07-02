@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
@@ -11,52 +11,75 @@ import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// PUBLIC_INTERFACE
-function App() {
-  const [theme, setTheme] = useState("light");
+// THEME CONTEXT FOR SPA-WIDE LIVE SWITCHING
+const ThemeContext = createContext({
+  theme: "light",
+  setTheme: () => {},
+});
+export function useTheme() {
+  return useContext(ThemeContext);
+}
 
+/**
+ * PUBLIC_INTERFACE
+ * ThemeProvider handles persistent theme state and <html data-theme> sync.
+ */
+function ThemeProvider({ children }) {
+  // Get initial theme from localStorage or system preference on load
+  const getInitialTheme = () => {
+    if (typeof window !== "undefined") {
+      const saved = window.localStorage.getItem("color-theme");
+      if (saved === "dark" || saved === "light") return saved;
+      // Auto-detect
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+    }
+    return "light";
+  };
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  // Whenever theme changes: update <html> and persist
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    try {
+      window.localStorage.setItem("color-theme", theme);
+    } catch (e) {}
   }, [theme]);
 
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
   return (
-    <AuthProvider>
-      <Router>
-        <ThemedAppContent />
-      </Router>
-    </AuthProvider>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+// PUBLIC_INTERFACE
+function App() {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <ThemedAppContent />
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
 // PUBLIC_INTERFACE
 function ThemedAppContent() {
   const { isAuthenticated, logout } = useAuth();
-  // Universal, persistent theme state
-  const getInitialTheme = () => {
-    const saved = window.localStorage.getItem("color-theme");
-    return saved === "dark" || saved === "light" ? saved : "light";
-  };
-  const [theme, setTheme] = React.useState(getInitialTheme);
+  const { theme, setTheme } = useTheme();
 
-  React.useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("color-theme", theme);
-  }, [theme]);
-
-  // Desktop: nav sits at top; demo: add theme toggle in nav bar
+  // Desktop: nav sits at top; theme toggle in nav bar
   return (
     <div className={styles.appContainer}>
       <AppNav isAuthenticated={isAuthenticated} onLogout={logout} />
       <button
         className="theme-toggle"
-        onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+        onClick={() => setTheme(t => (t === "light" ? "dark" : "light"))}
         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
         style={{ position: "fixed", top: 17, right: 16, zIndex: 100 }}
+        tabIndex={0}
       >
         {theme === "light" ? "🌙 Dark" : "☀️ Light"}
       </button>

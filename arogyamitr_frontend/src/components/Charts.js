@@ -27,13 +27,14 @@ export function ChartCard({ title, description, children }) {
 
 /** Modern accessible chart palette for both light/dark; always uses theme variables for backgrounds/lines for contrast. */
 export const chartPalette = [
-  "var(--primary)",        // Theme green
-  "var(--accent)",         // Theme blue
-  "var(--secondary)",      // Theme gold
-  "var(--accent-alt)",     // Alt accent
-  "var(--success)",        // Success green
-  "var(--danger)",         // Alert
-  "var(--secondary-light)","#314462" // Soft/dark for low-priority series
+  "var(--primary)",
+  "var(--accent)",
+  "var(--secondary)",
+  "var(--accent-alt)",
+  "var(--success)",
+  "var(--danger)",
+  "var(--secondary-light)",
+  "var(--bg-secondary)" // fallback/neutral
 ];
 
 /**
@@ -49,8 +50,22 @@ export function UserProgressChart({ data }) {
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis dataKey="name" tick={{ fill: "var(--text-primary)" }} />
           <YAxis domain={[0,100]} tick={{ fill: "var(--text-primary)" }} />
-          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
-          <Line type="monotone" dataKey="score" stroke="var(--primary)" strokeWidth={3} dot={{ r: 5, fill: "var(--accent-alt)" }} />
+          <Tooltip
+            contentStyle={{
+              background: "var(--card-bg)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border)"
+            }}
+            itemStyle={{ color: "var(--text-primary)" }}
+            labelStyle={{ color: "var(--text-secondary)" }}
+          />
+          <Line
+            type="monotone"
+            dataKey="score"
+            stroke="var(--primary)"
+            strokeWidth={3}
+            dot={{ r: 5, fill: "var(--accent-alt)" }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -91,7 +106,15 @@ export function HealthTipsBar({ data }) {
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis dataKey="tip" tick={{ fill: "var(--text-secondary)", fontSize: 11 }} />
           <YAxis allowDecimals={false} tick={{ fill: "var(--text-secondary)" }} />
-          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }}/>
+          <Tooltip
+            contentStyle={{
+              background: "var(--card-bg)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border)",
+            }}
+            itemStyle={{ color: "var(--text-primary)" }}
+            labelStyle={{ color: "var(--text-secondary)" }}
+          />
           <Bar dataKey="users" fill="var(--secondary)" />
         </BarChart>
       </ResponsiveContainer>
