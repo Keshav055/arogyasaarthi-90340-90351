@@ -90,7 +90,7 @@ function MindfulnessPage() {
   const celebrateProps = {
     first_log: {
       icon: "🎉",
-      message: <>Congrats! You made your first Mindfulness log! 🥇</>
+      message: <>Congrats! You made your first Mindfulness log! 🏇</>
     },
     streak: {
       icon: "🔥",
@@ -125,6 +125,73 @@ function MindfulnessPage() {
         <AvatarIcon label="mindfulness" emoji="🧘" />
         Mindfulness & Meditation
       </h2>
+      <div style={{
+        display: "flex",
+        gap: "1.3rem",
+        marginBottom: "1.6rem",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
+      }}>
+        <div
+          className="mindfulness-card meditation-card"
+          aria-label="Meditation"
+          style={{
+            background: "#f4eefd",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #d7ccf966",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Lotus" emoji="🧘‍♀️" />
+          <div>
+            <div style={{ fontSize: "1.25em", fontWeight: 600 }}>{journal.length ? "Daily Meditation" : "--"}</div>
+            <span style={{ color: "#9478ba", fontWeight: 500, fontSize: "0.95em" }}>
+              {(journal.length && "Today's Meditation") || "No entry"}
+            </span>
+          </div>
+        </div>
+        <div
+          className="mindfulness-card mood-card"
+          aria-label="Mood"
+          style={{
+            background: "#f9fff4",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #e0f5d566",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Smiling Face" emoji="😊" />
+          <div>
+            <div style={{ fontSize: "1.25em", fontWeight: 600 }}>{journal.length ? journal[journal.length - 1].mood : "--"}</div>
+            <span style={{ color: "#4CA65A", fontWeight: 500, fontSize: "0.95em" }}>
+              Mood
+            </span>
+          </div>
+        </div>
+        <div
+          className="mindfulness-card journal-card"
+          aria-label="Journal Entry"
+          style={{
+            background: "#fffdea",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #fff5ba50",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Notebook" emoji="📔" />
+          <div>
+            <div style={{ fontSize: "1.13em", fontWeight: 600 }}>
+              {journal.length ? (journal[journal.length - 1].notes.slice(0, 22) + (journal[journal.length - 1].notes.length > 22 ? "..." : "")) : "--"}
+            </div>
+            <span style={{ color: "#FFC857", fontWeight: 500, fontSize: "0.95em" }}>
+              Last Journal Entry
+            </span>
+          </div>
+        </div>
+      </div>
       <div style={{ marginBottom: 16 }}>
         <button
           className={anim.buttonHover}
@@ -140,7 +207,7 @@ function MindfulnessPage() {
         <UserProgressChart data={moodData} />
       </div>
       <ChartCard
-        title={<><AvatarIcon label="journal" emoji="💭" /> Mood & Journaling Log</>}
+        title={<><AvatarIcon label="journal" emoji="💬" /> Mood & Journaling Log</>}
         description="Track your daily emotional wellness and mindfulness journaling entries."
         className={anim.cardEntryAnimate}
       >

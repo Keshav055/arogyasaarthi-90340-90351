@@ -24,7 +24,6 @@ body {
 }
 
 /* Theme toggle and responsive tweaks unchanged */
-
 .theme-toggle {
   position: absolute;
   top: 20px;
@@ -60,4 +59,32 @@ body {
   .container {
     padding: 1.09rem 0.6rem;
   }
+}
+
+/* Avatar/Emoji styling for all playful icons in quick-log and stat cards */
+.fitness-avatar,
+.mindfulness-avatar,
+.nutrition-avatar,
+.sleep-avatar {
+  font-size: 2.4rem;
+  display: inline-block;
+  margin-right: 0.6rem;
+  vertical-align: middle;
+  background: #fff9;
+  border-radius: 50%;
+  width: 2.7rem;
+  height: 2.7rem;
+  text-align: center;
+  line-height: 2.7rem;
+  box-shadow: 0 1px 7px 0 rgba(76,196,90,0.13);
+}
+
+.fitness-card, .mindfulness-card, .nutrition-card, .sleep-card {
+  display: flex;
+  align-items: center;
+}
+
+.fitness-card h3, .mindfulness-card h3, .nutrition-card h3, .sleep-card h3 {
+  margin-bottom: 0.3rem;
+  margin-top: 0.1rem;
 }

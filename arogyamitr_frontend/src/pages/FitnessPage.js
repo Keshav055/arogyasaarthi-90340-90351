@@ -100,6 +100,12 @@ function FitnessPage() {
   };
   const celebrationType = showCelebrate.type || "generic";
 
+  // Playful quick stats for demonstration
+  const stepGoal = 10000;
+  const steps = workouts.reduce((a, w) => a + (parseInt(w.steps, 10) || 0), 0);
+  const workout = workouts.length > 0 ? workouts[workouts.length - 1] : null;
+  const calories = workouts.reduce((a, w) => a + Math.round(((parseInt(w.duration, 10) || 0) * 7.3) + ((parseInt(w.steps, 10) || 0) * 0.04)), 0);
+
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <ConfettiCelebration
@@ -133,6 +139,70 @@ function FitnessPage() {
         </button>
         <span style={{ color: "#EE4266" }}>{error && <>Error loading: {error}</>}</span>
       </div>
+      {/* Playful Major Stat Card Row */}
+      <div style={{
+        display: "flex",
+        gap: "1.3rem",
+        marginBottom: "1.6rem",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
+      }}>
+        <div
+          className="fitness-card steps-card"
+          aria-label="Steps Walked"
+          style={{
+            background: "#eef9fb",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #bee7ff33",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Shoe" emoji="👟" />
+          <div>
+            <div style={{ fontSize: "1.3em", fontWeight: 600 }}>{steps.toLocaleString()} / {stepGoal}</div>
+            <span style={{ color: "#39A2DB", fontWeight: 500, fontSize: "0.95em" }}>Steps</span>
+          </div>
+        </div>
+        <div
+          className="fitness-card workout-card"
+          aria-label="Today's Workout"
+          style={{
+            background: "#fff6eb",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #ffd8b066",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Dumbbell" emoji="🏋️‍♂️" />
+          <div>
+            <div style={{ fontSize: "1.13em", fontWeight: 600 }}>
+              {workout ? `${workout.type}` : "--"}
+            </div>
+            <span style={{ color: "#FF9600", fontWeight: 500, fontSize: "0.95em" }}>
+              {workout ? `${workout.duration} mins` : "No activity"}
+            </span>
+          </div>
+        </div>
+        <div
+          className="fitness-card calories-card"
+          aria-label="Calories Burned"
+          style={{
+            background: "#eefff0",
+            borderRadius: "1rem",
+            boxShadow: "0 2px 10px #b0f1a233",
+            minWidth: 135,
+            padding: "1rem 1.2rem",
+            flex: "1"
+          }}>
+          <AvatarIcon label="Fire" emoji="🔥" />
+          <div>
+            <div style={{ fontSize: "1.15em", fontWeight: 600 }}>{calories} kcal</div>
+            <span style={{ color: "#32b274", fontWeight: 500, fontSize: "0.95em" }}>Burned</span>
+          </div>
+        </div>
+      </div>
       <div className={anim.cardEntryAnimate} style={{ animationDelay: ".08s" }}>
         <UserProgressChart data={data?.progress || demoProgress} />
       </div>
@@ -149,7 +219,7 @@ function FitnessPage() {
                   <AvatarIcon label="date" emoji="📅" />Date
                 </th>
                 <th>
-                  <AvatarIcon label="type" emoji="🤸" />Type
+                  <AvatarIcon label="type" emoji="🧍" />Type
                 </th>
                 <th>
                   <AvatarIcon label="duration" emoji="⏱️" />Duration (min)
