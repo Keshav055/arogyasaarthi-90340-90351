@@ -6,26 +6,30 @@ Attempting to bind to HOST environment variable: 0.0.0.0
 If this was unintentional, check that you haven't mistakenly set it in your shell.
 Learn more here: https://cra.link/advanced-config
 
-(node:51692) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:52755) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:51692) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:52755) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
-Compiled successfully!
+Compiled with warnings.
 
-You can now view react-kavia in the browser.
+[eslint] 
+src/pages/DietNutritionPage.js
+  Line 2:39:    'ChartCard' is defined but never used                                                                                                                                                                                      no-unused-vars
+  Line 3:10:    'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 73:10:   'addModalOpen' is assigned a value but never used                                                                                                                                                                          no-unused-vars
+  Line 73:24:   'setAddModalOpen' is assigned a value but never used                                                                                                                                                                       no-unused-vars
+  Line 74:10:   'viewRecipe' is assigned a value but never used                                                                                                                                                                            no-unused-vars
+  Line 74:22:   'setViewRecipe' is assigned a value but never used                                                                                                                                                                         no-unused-vars
+  Line 76:24:   'setRegionFilter' is assigned a value but never used                                                                                                                                                                       no-unused-vars
+  Line 85:9:    The 'allRecipes' array makes the dependencies of useMemo Hook (at line 100) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  Line 90:9:    'filteredRecipes' is assigned a value but never used                                                                                                                                                                       no-unused-vars
+  Line 102:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 107:12:  'handleLogMeal' is defined but never used                                                                                                                                                                                  no-unused-vars
 
-  Local:            http://localhost:3000
-  On Your Network:  http://172.17.0.2:3000
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
 
-Note that the development build is not optimized.
-To create a production build, use npm run build.
-
-webpack compiled successfully
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve '../MicroAnimatedInput' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
 WARNING in [eslint] 
 src/pages/DietNutritionPage.js
   Line 2:39:    'ChartCard' is defined but never used                                                                                                                                                                                      no-unused-vars
@@ -40,56 +44,7 @@ src/pages/DietNutritionPage.js
   Line 102:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                                no-unused-vars
   Line 107:12:  'handleLogMeal' is defined but never used                                                                                                                                                                                  no-unused-vars
 
-ERROR in ./src/pages/DietNutritionPage.js 10:0-55
-Module not found: Error: Can't resolve '../MicroAnimatedInput' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
-
-webpack compiled with 1 error and 1 warning
-Compiling...
-Failed to compile.
-
-Module not found: Error: You attempted to import ../../MicroAnimatedInput which falls outside of the project src/ directory. Relative imports outside of src/ are not supported.
-You can either move it inside src/, or add a symlink to it from project's node_modules/.
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 2:39:    'ChartCard' is defined but never used                                                                                                                                                                                      no-unused-vars
-  Line 3:10:    'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 73:10:   'addModalOpen' is assigned a value but never used                                                                                                                                                                          no-unused-vars
-  Line 73:24:   'setAddModalOpen' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 74:10:   'viewRecipe' is assigned a value but never used                                                                                                                                                                            no-unused-vars
-  Line 74:22:   'setViewRecipe' is assigned a value but never used                                                                                                                                                                         no-unused-vars
-  Line 76:24:   'setRegionFilter' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 85:9:    The 'allRecipes' array makes the dependencies of useMemo Hook (at line 100) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  Line 90:9:    'filteredRecipes' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 102:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                                no-unused-vars
-  Line 107:12:  'handleLogMeal' is defined but never used                                                                                                                                                                                  no-unused-vars
-
-ERROR in ./src/pages/DietNutritionPage.js 10:0-58
-Module not found: Error: You attempted to import ../../MicroAnimatedInput which falls outside of the project src/ directory. Relative imports outside of src/ are not supported.
-You can either move it inside src/, or add a symlink to it from project's node_modules/.
-
-webpack compiled with 1 error and 1 warning
-Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve '../MicroAnimatedInput' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 2:39:    'ChartCard' is defined but never used                                                                                                                                                                                      no-unused-vars
-  Line 3:10:    'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 73:10:   'addModalOpen' is assigned a value but never used                                                                                                                                                                          no-unused-vars
-  Line 73:24:   'setAddModalOpen' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 74:10:   'viewRecipe' is assigned a value but never used                                                                                                                                                                            no-unused-vars
-  Line 74:22:   'setViewRecipe' is assigned a value but never used                                                                                                                                                                         no-unused-vars
-  Line 76:24:   'setRegionFilter' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 85:9:    The 'allRecipes' array makes the dependencies of useMemo Hook (at line 100) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  Line 90:9:    'filteredRecipes' is assigned a value but never used                                                                                                                                                                       no-unused-vars
-  Line 102:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                                no-unused-vars
-  Line 107:12:  'handleLogMeal' is defined but never used                                                                                                                                                                                  no-unused-vars
-
-ERROR in ./src/pages/DietNutritionPage.js 10:0-55
-Module not found: Error: Can't resolve '../MicroAnimatedInput' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
-
-webpack compiled with 1 error and 1 warning
+webpack compiled with 1 warning
 Compiling...
 Compiled with warnings.
 
