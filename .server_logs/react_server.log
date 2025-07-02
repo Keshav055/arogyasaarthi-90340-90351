@@ -6,9 +6,9 @@ Attempting to bind to HOST environment variable: 0.0.0.0
 If this was unintentional, check that you haven't mistakenly set it in your shell.
 Learn more here: https://cra.link/advanced-config
 
-(node:31641) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:34823) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:31641) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:34823) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -29,114 +29,17 @@ Compiling...
 Compiled successfully!
 webpack compiled successfully
 Compiling...
-Failed to compile.
-
-Module not found: Error: Can't resolve './Charts.js.bak_exported_charts' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
-WARNING in [eslint] 
-src/components/Charts.js
-  Line 3:3:   'LineChart' is defined but never used            no-unused-vars
-  Line 3:14:  'Line' is defined but never used                 no-unused-vars
-  Line 3:20:  'BarChart' is defined but never used             no-unused-vars
-  Line 3:30:  'Bar' is defined but never used                  no-unused-vars
-  Line 3:35:  'PieChart' is defined but never used             no-unused-vars
-  Line 3:45:  'Pie' is defined but never used                  no-unused-vars
-  Line 3:50:  'RadarChart' is defined but never used           no-unused-vars
-  Line 3:62:  'Radar' is defined but never used                no-unused-vars
-  Line 3:69:  'PolarGrid' is defined but never used            no-unused-vars
-  Line 3:80:  'PolarAngleAxis' is defined but never used       no-unused-vars
-  Line 3:96:  'PolarRadiusAxis' is defined but never used      no-unused-vars
-  Line 4:3:   'CartesianGrid' is defined but never used        no-unused-vars
-  Line 4:18:  'XAxis' is defined but never used                no-unused-vars
-  Line 4:25:  'YAxis' is defined but never used                no-unused-vars
-  Line 4:32:  'Tooltip' is defined but never used              no-unused-vars
-  Line 4:41:  'ResponsiveContainer' is defined but never used  no-unused-vars
-  Line 4:62:  'Legend' is defined but never used               no-unused-vars
-  Line 4:70:  'Cell' is defined but never used                 no-unused-vars
-
-ERROR in ./src/components/Charts.js 208:0-48
-Module not found: Error: Can't resolve './Charts.js.bak_exported_charts' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
-
-ERROR in ./src/pages/DashboardPage.js 838:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DashboardPage.js 844:35-54
-export 'WellnessInfographic' (imported as 'WellnessInfographic') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DashboardPage.js 850:35-48
-export 'HealthTipsBar' (imported as 'HealthTipsBar') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DietNutritionPage.js 1194:35-47
-export 'HydrationPie' (imported as 'HydrationPie') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DietNutritionPage.js 1201:35-48
-export 'NutrientRadar' (imported as 'NutrientRadar') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/FitnessPage.js 139:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/MindfulnessPage.js 127:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/SleepPage.js 133:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/WellnessPathPage.js 519:35-54
-export 'WellnessInfographic' (imported as 'WellnessInfographic') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-webpack compiled with 10 errors and 1 warning
+Compiled successfully!
+webpack compiled successfully
 Compiling...
-Failed to compile.
-
-Attempted import error: 'UserProgressChart' is not exported from '../components/Charts' (imported as 'UserProgressChart').
-WARNING in [eslint] 
-src/components/Charts.js
-  Line 3:3:   'LineChart' is defined but never used            no-unused-vars
-  Line 3:14:  'Line' is defined but never used                 no-unused-vars
-  Line 3:20:  'BarChart' is defined but never used             no-unused-vars
-  Line 3:30:  'Bar' is defined but never used                  no-unused-vars
-  Line 3:35:  'PieChart' is defined but never used             no-unused-vars
-  Line 3:45:  'Pie' is defined but never used                  no-unused-vars
-  Line 3:50:  'RadarChart' is defined but never used           no-unused-vars
-  Line 3:62:  'Radar' is defined but never used                no-unused-vars
-  Line 3:69:  'PolarGrid' is defined but never used            no-unused-vars
-  Line 3:80:  'PolarAngleAxis' is defined but never used       no-unused-vars
-  Line 3:96:  'PolarRadiusAxis' is defined but never used      no-unused-vars
-  Line 4:3:   'CartesianGrid' is defined but never used        no-unused-vars
-  Line 4:18:  'XAxis' is defined but never used                no-unused-vars
-  Line 4:25:  'YAxis' is defined but never used                no-unused-vars
-  Line 4:32:  'Tooltip' is defined but never used              no-unused-vars
-  Line 4:41:  'ResponsiveContainer' is defined but never used  no-unused-vars
-  Line 4:62:  'Legend' is defined but never used               no-unused-vars
-  Line 4:70:  'Cell' is defined but never used                 no-unused-vars
-
-ERROR in ./src/pages/DashboardPage.js 838:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DashboardPage.js 844:35-54
-export 'WellnessInfographic' (imported as 'WellnessInfographic') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DashboardPage.js 850:35-48
-export 'HealthTipsBar' (imported as 'HealthTipsBar') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DietNutritionPage.js 1194:35-47
-export 'HydrationPie' (imported as 'HydrationPie') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/DietNutritionPage.js 1201:35-48
-export 'NutrientRadar' (imported as 'NutrientRadar') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/FitnessPage.js 139:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/MindfulnessPage.js 127:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/SleepPage.js 133:35-52
-export 'UserProgressChart' (imported as 'UserProgressChart') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-ERROR in ./src/pages/WellnessPathPage.js 519:35-54
-export 'WellnessInfographic' (imported as 'WellnessInfographic') was not found in '../components/Charts' (possible exports: ChartCard, DonutChart)
-
-webpack compiled with 9 errors and 1 warning
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
 Compiling...
 Compiled successfully!
 webpack compiled successfully

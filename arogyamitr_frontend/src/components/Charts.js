@@ -32,6 +32,7 @@ export function ChartCard({ title, description, children }) {
 export const DonutChart = ({ consumed, total }) => {
   const percent = Math.round((consumed / total) * 100);
 
+  // Chart colors: arc (active), arc (remaining)
   const arcConsumed = "var(--accent-green)";
   const arcRemaining = "var(--chart-inactive-bg)";
 
@@ -61,29 +62,43 @@ export const DonutChart = ({ consumed, total }) => {
           strokeLinecap="round"
         />
       </svg>
-      {/* Overlay percentage - always readable */}
-      <div className="chart-label-overlay">
-        {percent}%
-      </div>
-      {/* Legends */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 8 }}>
-        <div style={{ display: "flex", alignItems: "center", marginRight: 18 }}>
-          <span style={{
-            width: 16, height: 16,
-            display: "inline-block",
-            background: "var(--accent-green)",
-            borderRadius: 3, marginRight: 6
-          }}></span>
-          <span className="chart-legend-active">Consumed</span>
+      {/* Overlay percentage - always readable, strictly use --primary-text with white shadow for contrast */}
+      <div className="chart-label-overlay">{percent}%</div>
+      {/* Accessible legends */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 13, gap: 20 }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span
+            aria-label="Consumed"
+            style={{
+              width: 16,
+              height: 16,
+              display: "inline-block",
+              background: "var(--accent-green)",
+              borderRadius: 4,
+              marginRight: 7,
+              border: "1.5px solid var(--primary-text)"
+            }}
+          ></span>
+          <span className="chart-legend-active" style={{ color: "var(--primary-text)" }}>
+            Consumed
+          </span>
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <span style={{
-            width: 16, height: 16,
-            display: "inline-block",
-            background: "var(--chart-inactive-bg)",
-            borderRadius: 3, marginRight: 6
-          }}></span>
-          <span className="chart-legend">Remaining</span>
+          <span
+            aria-label="Remaining"
+            style={{
+              width: 16,
+              height: 16,
+              display: "inline-block",
+              background: "var(--chart-inactive-bg)",
+              borderRadius: 4,
+              marginRight: 7,
+              border: "1.5px solid var(--inactive-gray)"
+            }}
+          ></span>
+          <span className="chart-legend" style={{ color: "var(--inactive-gray)" }}>
+            Remaining
+          </span>
         </div>
       </div>
     </div>
@@ -206,16 +221,35 @@ export function HydrationPie({ value, goal }) {
             )}
           </Pie>
           <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />
-          <Legend />
+          <Legend
+            iconType="rect"
+            formatter={(value) => (
+              <span
+                style={{
+                  color: value === "Consumed" ? "var(--primary-text)" : "var(--inactive-gray)",
+                  fontWeight: value === "Consumed" ? "700" : "400",
+                }}
+              >
+                {value}
+              </span>
+            )}
+          />
         </PieChart>
       </ResponsiveContainer>
-      <div style={{
-        marginTop: "-40px",
-        textAlign: "center",
-        color: "var(--primary)",
-        fontWeight: "bold",
-        fontSize: "1.5rem"
-      }}>
+      {/* Accessible central percent (large, always --primary-text, with white shadow) */}
+      <div
+        className="chart-label-overlay"
+        style={{
+          position: "static",
+          marginTop: "-40px",
+          textAlign: "center",
+          color: "var(--primary-text)",
+          textShadow: "0 1px 4px #fff, 0 0 4px #fff",
+          fontWeight: 700,
+          fontSize: "1.6rem"
+        }}
+        aria-label={`${percent}% of hydration goal met`}
+      >
         {percent}%
       </div>
     </ChartCard>

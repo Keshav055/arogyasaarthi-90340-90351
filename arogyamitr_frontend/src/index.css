@@ -7,8 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg, #111821);
-  color: var(--text, #f2f5fd);
+  /* Remove background/color override: colors now entirely managed via AppTheme.module.css */
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -4,7 +4,7 @@ body {
   color: var(--primary-text);
 }
 
-/* Card styling (rely on theme but ensure color override for text) */
+/* Card styling (all text colors must be accessible) */
 .card {
   background: var(--card-bg);
   border-radius: 1.2rem;
@@ -12,34 +12,10 @@ body {
   padding: 2rem;
   margin-bottom: 1.5rem;
   border: 1px solid var(--border);
-}
-
-/* Accessible chart/legend/overlay text styles */
-.chart-legend {
-  color: var(--inactive-gray);
-  font-size: 1.05rem;
-  letter-spacing: 0.01em;
-}
-
-.chart-legend-active,
-.chart-label-active {
   color: var(--primary-text);
-  font-weight: 700;
 }
 
-.chart-label-overlay {
-  color: var(--primary-text) !important;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  text-shadow: 0 0 2px #fff, 0 0 6px #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  pointer-events: none;
-  user-select: none;
-}
+/* Remove duplicate or deprecated legend/overlay rules here; rely on AppTheme.module.css */
 
 /* Accessibility: focus outline */
 :focus-visible {

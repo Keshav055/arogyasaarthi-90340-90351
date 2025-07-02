@@ -1,16 +1,16 @@
 :root {
-  /* Accessible, WCAG-compliant color variables */
+  /* Accessible, WCAG-compliant color variables (from design notes) */
   --background: #ffffff;
   --surface: #f7fafd;
   --card-bg: #fff;
   --header-bg: #e7f5ec;
 
-  --primary-text: #212121;         /* all main/text/overlay/labels on white */
-  --accent-green: #27642f;         /* chart/arc/active, avoid for text on white */
-  --inactive-gray: #7d8692;        /* chart/inactive/remaining/legend secondary */
-  --chart-inactive-bg: #e3e8ee;
+  --primary-text: #212121;         /* All main text, chart overlays, labels */
+  --accent-green: #27642f;         /* Chart active/arc, only for backgrounds/arcs */
+  --inactive-gray: #7d8692;        /* Chart/inactive/legend/secondary text */
+  --chart-inactive-bg: #e3e8ee;    /* Chart BG/inactive arc */
 
-  --primary: #27642f;              /* override old green with accessible */
+  --primary: #27642f;
   --primary-dark: #194524;
   --secondary: #2C3E50;
   --secondary-light: #FFF2C1;
@@ -26,7 +26,7 @@
   --text-inverse: #fff;
   --grey-muted: #e3e8ee;
 
-  /* Inputs/buttons (unchanged) */
+  /* Inputs/buttons */
   --button-bg: var(--primary);
   --button-text: #fff;
   --button-bg-contrast: #fff;
@@ -34,12 +34,11 @@
   --input-border: var(--border);
   --input-text: var(--text-main);
   --input-placeholder: #a3adc0;
-
   --focus-outline: #27642f;
 }
 
 [data-theme="dark"] {
-  /* For illustration only. Full dark mode not in scope for this change. */
+  /* Accessible, high-contrast dark mode for critical overlays */
   --primary: #7ec583;
   --primary-dark: #35806b;
   --accent: #6ab9f3;
@@ -59,7 +58,7 @@ body {
   padding: 0;
   background: var(--background);
   color: var(--primary-text);
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
   transition:
     background-color 0.23s cubic-bezier(.4,0,.2,1),
@@ -78,31 +77,37 @@ body {
   transition: background 0.19s, color 0.13s, border 0.16s;
 }
 
-/* Cards, legends, overlay label fixes for accessibility */
+/* Accessible legend and overlay text for all charts */
 .chart-legend {
-  color: var(--inactive-gray);
-  font-size: 1.05rem;
+  color: var(--inactive-gray); /* Secondary/legend text */
+  font-size: 1.07rem;
   letter-spacing: 0.01em;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 .chart-legend-active,
 .chart-label-active {
-  color: var(--primary-text);
+  color: var(--primary-text) !important;
   font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.01em;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 .chart-label-overlay {
   color: var(--primary-text) !important;
   font-size: 2rem;
   font-weight: 700;
-  line-height: 1;
-  text-shadow: 0 0 2px #fff, 0 0 6px #fff;
+  line-height: 1.07;
+  text-shadow: 0 1px 4px #fff, 0 0 6px #fff; /* For contrast if overlaying arc */
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
   user-select: none;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 0.09em 0.19em;
 }
 
 /* Accessible outline for focus */
@@ -110,7 +115,5 @@ body {
   outline: 2px solid var(--focus-outline);
   outline-offset: 2px;
 }
-
-/* No global animation changes needed */
 
 /* Responsive utility classes omitted for brevity */
