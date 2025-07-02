@@ -14,321 +14,292 @@ This document compares the React frontend implementation to the detailed app req
 
 ---
 
-## Page-By-Page Audit
+## Page-By-Page Audit (Current Implementation vs Requirements)
 
-### 1. Homepage / Dashboard (/dashboard)
-**Existing:**  
-- User greeting, logout button
-- Progress chart (UserProgressChart), wellness infographic (radar), trending health tips (bar chart)
+### 1. Homepage / Dashboard (`DashboardPage.js`)
+**Implemented:**  
+- Greeting, logout button
+- User progress chart, wellness radar infographic, trending health tips bar chart
 
 **Missing:**  
-- Notifications (health reminders, unread activity)
-- Quick health check-in widget (e.g. “How are you feeling?”)
-- Upcoming appointments/events snippet
+- Notification panel (reminders, unread activity)
+- Quick health check-in widget ("How are you feeling?")
+- Upcoming appointments/events card/snippet
 - Deeper data insights (AI highlights, suggested actions)
-- Customizable dashboard tiles/cards
+- Customizable dashboard tiles/cards (add/remove/reorder modules)
 - Recent activity log/summary
 
-**To Add:**  
-- Notification and activity panels (top or sidebar cards)
-- Customizable tile/components ("Add tile" or drag/drop order)
-- Widget for "Quick health check-in"
-- Card with upcoming bookings/events
+**Summary:**  
+- Must add notifications, activity summary, check-in widget, booking/events card, and customizable dashboard tile UI.
 
 ---
 
-### 2. Wellness Path (/wellness-path)
-**Existing:**  
-- Wellness radar chart (static), goal suggestion list
+### 2. Wellness Path (`WellnessPathPage.js`)
+**Implemented:**  
+- Static wellness radar, goal suggestions list
 
 **Missing:**  
-- Ability to select/change focus areas (e.g. Nutrition/Fitness/Mindfulness/Sleep)
-- Animation or progress along path
-- Navigation/Call-to-action buttons to submodules
-- Deeper analytics (historical trends)
-- “Set/Track Goal” button(s)
-- Guided user walkthrough (onboarding-style)
+- Interactive selection/changing focus areas (e.g., Nutrition/Fitness/Mindfulness/Sleep)
+- Animated progress path visualization
+- Navigation/Cards for submodules (Diet, Fitness, etc.)
+- Goal "set/track" buttons
+- Historical analytics (trends)
+- Onboarding/walkthrough wizard
 
-**To Add:**  
-- Interactive selection of focus areas
-- CTA cards linking to Diet/Fitness/Mindfulness/Sleep
-- Progress timeline/visualization
-- Goal setting/tracking widget
+**Summary:**  
+- Should implement: interactive focus selection, progress visual, CTA cards, goal/track widget, onboarding experience.
 
 ---
 
-### 3. Diet & Nutrition (/diet-nutrition)
-**Existing:**  
-- Hydration pie chart, nutrient radar, meal planner placeholder
+### 3. Diet & Nutrition (`DietNutritionPage.js`)
+**Implemented:**  
+- Hydration pie chart and nutrient radar
+- Meal planner placeholder
 
 **Missing:**  
-- Live meal plan browser (filter/search), add meal/food log
-- Indian regional recipes database/list
-- Hydration/nutrient reminders
-- Upload/add custom recipe
-- Nutrition tip cards, AI nutrition suggestions
-- Calorie/macro summary cards
-- Barcode scanner link for groceries (deep link to Product Scanner)
+- Meal plan table/list with filter/search
+- Add meal/food/hydration log forms (user input)
+- Indian regional recipes explorer (list, with region filter)
+- Nutrition suggestion/tip cards (from AI or database)
+- Calorie/macro summary
+- Barcode scanner link (to Product Scanner)
+- Upload/add user recipe
+- Hydration/nutrient reminder notifications
 
-**To Add:**  
-- Table/List for daily/weekly meal plan (with filter)
-- Indian recipes explorer (region dropdown, etc)
-- Add meal and hydration log forms
-- List for nutrition suggestions/tips (scrollable)
-- Button to scan/navigate to product scanner
+**Summary:**  
+- Add: meal plan UI, logging forms, Indian recipes browser, tip/suggestion cards, barcode link, and log reminders.
 
 ---
 
-### 4. Fitness (/fitness)
-**Existing:**  
-- Progress chart, workout log table, add workout form (demo only, not persisted)
+### 4. Fitness (`FitnessPage.js`)
+**Implemented:**  
+- Progress chart, workout log table
+- Add workout form (demo only, not persisted)
 
 **Missing:**  
-- Fetching/saving workout logs to backend
-- AI workout suggestion widget
+- Backend integration for logs (current: client-only)
+- AI workout suggestion widget/cards
 - Embedded exercise video player
 - Step goal progress bar
-- Actionable cards: “Start workout”, “View history”, “Sync device”
+- CTA/action cards: “Start workout,” “View history,” “Sync device”
 - Feedback/encouragement notification
 
-**To Add:**  
-- Integrate with real backend for logs
-- Workout suggestion cards, video embed area
-- Progress bar with today’s target/steps
-- CTA for device sync/import
-- Motivational notification/popup
+**Summary:**  
+- Provide persistent backend logs, workout suggestions, embedded player, goal progress, device sync CTA, and notifications.
 
 ---
 
-### 5. Mindfulness (/mindfulness)
-**Existing:**  
-- Mood progress chart, journaling log table, add entry form (demo only, not persisted)
+### 5. Mindfulness (`MindfulnessPage.js`)
+**Implemented:**  
+- Mood progress chart, journal log table, add-entry form (demo-only)
 
 **Missing:**  
 - Guided meditation audio player
-- Pranayama (breath training) timer
-- Save/restore mood/journal to/from backend
-- Calming reminders/notifications
-- Streaks ("X days meditated")
-- Mood trend insights/AI feedback
+- Pranayama (breath training) timer/widget
+- Backend for log saving/restoring
+- Calming reminders/notification toggle
+- Streaks/count ("X days meditated")
+- Trend/insight/AI feedback panel
 
-**To Add:**  
-- Audio/video playback card for meditation/pranayama
-- Streaks and insights panel
-- Connect to backend for log persistence
-- Push notification toggle
+**Summary:**  
+- Add: audio/video player, streak/insight panel, backend log persistence, reminder toggle.
 
 ---
 
-### 6. Sleep (/sleep)
-**Existing:**  
-- Sleep progress chart, log/entry form, log table (demo/persist only in state)
+### 6. Sleep (`SleepPage.js`)
+**Implemented:**  
+- Sleep progress chart, log table/form (state only)
 
 **Missing:**  
 - Circadian rhythm/cycle visualization
-- Smart alarm/bedtime tips/recommendations
-- Historical sleep analytics
-- Sync sleep data (device)
-- "Add sleep data" via device upload
-- AI sleep quality feedback
+- Smart alarm/bedtime tips, recommendations
+- Import/sync device sleep data
+- "Add sleep" via device upload
+- AI sleep quality feedback and historic analytics
 
-**To Add:**  
-- Cards for tips/history/cycle
-- Sync/import device data UI
-- Inline AI feedback after adding new record
+**Summary:**  
+- Add: cycle card, history/tips cards, device import, AI assessment after entries.
 
 ---
 
-### 7. Product Scanner (/product-scanner)
-**Existing:**  
-- Placeholder text
+### 7. Product Scanner (`ProductScannerPage.js`)
+**Implemented:**  
+- Placeholder text only
 
 **Missing:**  
-- Barcode/QR scanner activation (webcam widget or input)
-- Scan/import/upload barcode
-- Product info/result and AI ethical score display
-- Button to find/recommend alternatives
-- Camera permissions/UX handling
+- Barcode/QR input (webcam or text box)
+- Product scan/import/upload, display info/results, AI score
+- Alternative recommendations
+- Camera permissions
 
-**To Add:**  
-- Barcode scanner input
-- Result cards/list with scores
-- Alternative product recommendations
+**Summary:**  
+- Needs barcode scanner widget, product results/score, alternative recommendations UI.
 
 ---
 
-### 8. Ethical Directory (/ethical-business-directory)
-**Existing:**  
-- Placeholder text
+### 8. Ethical Directory (`EthicalBusinessDirectoryPage.js`)
+**Implemented:**  
+- Placeholder text only
 
 **Missing:**  
-- Map view with pins (Google Maps/Mapbox)
-- Listings/table/cards of businesses with filtering
-- Business detail modal/popup
-- Submit/review/rate business
-- Category/regional filter UI
+- Map widget (Google/Mapbox)
+- Table/list/cards of businesses with filter/search
+- Business detail modal/pop-up
+- Review/ratings, submission form
+- Category/region filter UI
 
-**To Add:**  
-- Table/list of businesses
-- Search/filter bar
-- Map widget
-- Review/rating component
+**Summary:**  
+- Add business list/table, map, filter/search, review submission, modal popups.
 
 ---
 
-### 9. Disease Management (/disease-management)
-**Existing:**  
-- Health metrics chart placeholder
+### 9. Disease Management (`DiseaseManagementPage.js`)
+**Implemented:**  
+- Chart placeholder for health metrics
 
 **Missing:**  
-- Vitals chart (BP, glucose, weight, etc)
+- Vitals chart: BP, glucose, weight, etc.
 - Add/view logs (chart + table)
-- Medication reminder/set notification
+- Medication reminder/notification
 - Upload/share medical records
-- AI anomaly alerts/insights
+- AI anomaly/insight alerts
 
-**To Add:**  
-- Vitals multi-metric chart
-- Add/view record table
-- Medication reminders
-- Upload/share file widget
-- Insights panel (AI driven, optional)
+**Summary:**  
+- Add: multi-metric chart, CRUD on logs/records, reminders, uploads, AI insight panel.
 
 ---
 
-### 10. Tele-Consultation (/teleconsultation)
-**Existing:**  
-- Room join, chat with doctor (WebSocket), video call placeholder
+### 10. Teleconsultation (`TeleconsultationPage.js`)
+**Implemented:**  
+- Room join, chat with doctor (WebSocket), video area (placeholder)
 
 **Missing:**  
-- Real video call integration (WebRTC/Jitsi/Agora etc)
-- Doctor selection/list of available experts
-- Appointment booking calendar
-- E-prescription (download/view record)
-- File/image share in chat
+- Real video call integration (WebRTC/Jitsi/Agora)
+- Doctor selection/list, search
+- Appointment booking calendar UI
+- E-prescription view/download
+- File/image sharing in chat
 - Consultation history list/table
 
-**To Add:**  
-- Replace video placeholder with real integration
-- Doctor search/selection
-- Calendar booking widget
-- Record/file share UI in chat
-- Past consultations table
+**Summary:**  
+- Add: real video, doctor selector, calendar booking, file sharing, consultation log.
 
 ---
 
-### 11. Peer Support/Forums (/forums)
-**Existing:**  
-- WebSocket-based group chat, persistent username
+### 11. Peer Support/Forums (`ForumsPage.js`)
+**Implemented:**  
+- Live WebSocket group chat, basic username
 
 **Missing:**  
-- Multiple rooms/topics selection
-- Private chat with peer/friend
-- Event calendar (local/peer health events)
-- Moderation tools (report, mute)
+- Rooms/topics selector, private/direct chat
+- Event calendar (community events)
+- Moderation tools (report/mute)
 - Message search/filter
 
-**To Add:**  
-- Rooms selector UI
-- Direct chat feature
-- Events/calendar pane
-- Basic moderation (UI)
+**Summary:**  
+- Implement: rooms/topics UI, direct chat, event/calendar, moderation tools.
 
 ---
 
-### 12. Local Resources (/resources)
-**Existing:**  
-- Placeholder text
+### 12. Local Resources (`LocalResourcesPage.js`)
+**Implemented:**  
+- Placeholder text only
 
 **Missing:**  
-- Directory/map of clinics/pharmacies/labs
-- List/filter/search UI
-- Local health events calendar
-- “Add resource/event” form
-- “Near me” (geolocation) map
+- Directory/map of clinics/pharmacies/labs/resources
+- List/search/filter UI
+- Event calendar UI
+- Add resource/event widget (form)
+- “Near me”/geolocation map
 
-**To Add:**  
-- Resource table/list with cards
-- Search/filter bar
-- Map widget with geolocation
-- Event calendar
-- Add resource/event button/modal
+**Summary:**  
+- Add: map/resource table, search bar, calendar, add resource/event, geolocation.
 
 ---
 
-### 13. Education Hub (/education)
-**Existing:**  
-- Placeholder text
+### 13. Education Hub (`EducationHubPage.js`)
+**Implemented:**  
+- Placeholder text only
 
 **Missing:**  
 - Article/video/infographic cards (fetch/paginate)
-- Video/media embedded player
-- Categories/tags filtering
-- Article detail/read mode
-- Bookmark/save/share article
+- Embedded video/media player
+- Categories/tags/filter search
+- Article detail view (modal/fullscreen)
+- Save/bookmark/share UI
 
-**To Add:**  
-- List of articles/videos (responsive cards)
-- Embedded video player
-- Filter/search bar
-- Save/bookmark option
+**Summary:**  
+- Add: articles/video browser, cards, filter/search, embedded player, bookmarks.
 
 ---
 
-### 14. AI Chat (/ai-chat)
-**Existing:**  
-- Functional WebSocket chat; real-time UI, message log, basic voice input placeholder
+### 14. AI Chat (`AiChatPage.js`)
+**Implemented:**  
+- Functional real-time WebSocket chat, message log, voice input placeholder
 
 **Missing:**  
-- Voice input (mic record to text, browser API)
+- Real voice input integration and permissions
 - Response audio (text-to-speech)
-- Chat session/history view
+- Chat session/history view/persistence
 - Health question prompt suggestions
-- Option to escalate to Teleconsult or Peer Forum
+- Quick navigation CTA to Teleconsult/Forum on context
 
-**To Add:**  
-- Add voice input button and permissions handling
-- Text-to-speech audio replay
-- Message history/session list
-- Suggestion/CTA buttons for navigation
+**Summary:**  
+- Add: speech-to-text, response audio, session/history UI, suggested question CTA.
 
 ---
 
-### 15. Profile & Settings (/profile)
-**Existing:**  
-- Placeholder text
+### 15. Profile & Settings (`ProfileSettingsPage.js`)
+**Implemented:**  
+- Placeholder text only
 
 **Missing:**  
-- User info display/edit form
-- Device integration (wearables, sync)
-- Notification preferences
-- Privacy/security settings
+- User info form (view/edit)
+- Device integration (wearable sync)
+- Notification, privacy/security preferences/settings
 - Connected accounts list
-- Download/delete account data
+- Download/delete account data options
 
-**To Add:**  
-- Full profile form (view/edit)
-- Device connection UI
-- Notification/privacy settings
-- Export/delete account actions
+**Summary:**  
+- Implement: full profile edit form, settings, device connect UI, privacy/export controls.
 
 ---
 
-## General UI/UX:
-
-### Navigation/Layout
-**Existing:**  
-- Top nav bar, responsive to login state, mobile drawer
+### General UI/UX (Contextual Navigation/Layout)
+**Implemented:**  
+- Top nav bar, responsive to login state, basic mobile drawer
 
 **Missing:**  
-- Contextual sidebars (dashboard, main modules)
-- Persistent bottom navigation (for mobile)
-- Floating action buttons for common actions
-- Modular dashboard with customizable tiles
+- Contextual sidebars (dashboard/modules)
+- Persistent bottom navigation (mobile)
+- Floating action buttons (page-level CTAs)
+- Modular dashboard: customizable tile arrangement
 
-**To Add:**  
-- Implement sidebar modular navigation
-- Bottom bar for mobile, floating CTAs
+**Summary:**  
+- Add: side-nav, bottom-nav, floating CTAs, modular dashboard config.
+
+---
+
+## Full Work To-Do Summary (per page):
+
+| Page/Module             | Key Missing Elements/Features                                                                      |
+|-------------------------|----------------------------------------------------------------------------------------------------|
+| Dashboard               | Notifications, check-in widget, activity log, events card, customizable tiles                     |
+| Wellness Path           | Interactive focus select, progress visual/timeline, navigation cards, goal widgets, onboarding     |
+| Diet & Nutrition        | Meal plan/recipe list, log forms, Indian regional recipes, tip cards, barcode scanner link         |
+| Fitness                 | Backend logs, AI suggestions, video embed, progress bar, CTA cards (sync, start), notifications     |
+| Mindfulness             | Audio player, breath-pranayama widget, backend journaling, streaks, AI insights, reminders         |
+| Sleep                   | Rhythm/cycle card, analytics/history, device sync/import, AI sleep feedback/tips                  |
+| Product Scanner         | Barcode/QR input, result cards, alternative recommendations, camera permissions                   |
+| Ethical Directory       | Map, business list/table, filter/search bar, reviews/ratings, detail popup                        |
+| Disease Management      | Vitals chart, logs, records upload/share, medication reminders, insights/alerts                   |
+| Teleconsultation        | Real video, doctor search, booking calendar, file/image share, consultation history, e-prescription|
+| Forums                  | Multiple rooms/topics, direct chat, event/calendar, moderation, search/filter                     |
+| Local Resources         | Directory/map, filter/search, event calendar, add resource/event, geolocation                     |
+| Education Hub           | Article/video cards, filter/search, embedded player, bookmarks/share                              |
+| AI Chat                 | Speech-to-text, response TTS, session/history, suggestion CTAs                                    |
+| Profile/Settings        | Editable form, device UI, notification/privacy settings, data export/delete                       |
+| Navigation/Layout       | Sidebars, bottom nav (mobile), floating CTAs, modular dashboard                                   |
 
 ---
 
@@ -372,3 +343,4 @@ Task Owner: Frontend Lead
 
 Date: 2024-06-08
 
+>>>>>>> REPLACE
