@@ -6,118 +6,27 @@ Attempting to bind to HOST environment variable: 0.0.0.0
 If this was unintentional, check that you haven't mistakenly set it in your shell.
 Learn more here: https://cra.link/advanced-config
 
-(node:42768) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:44050) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:42768) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:44050) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
-Compiled successfully!
-
-You can now view react-kavia in the browser.
-
-  Local:            http://localhost:3000
-  On Your Network:  http://172.17.0.2:3000
-
-Note that the development build is not optimized.
-To create a production build, use npm run build.
-
-webpack compiled successfully
-Compiling...
-Failed to compile.
+Compiled with warnings.
 
 [eslint] 
 src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
+  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
-Search for the keywords to learn more about each error.
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
 WARNING in [eslint] 
 src/pages/DietNutritionPage.js
   Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 128:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 143) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-
-webpack compiled with 1 error and 1 warning
-Compiling...
-Failed to compile.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 128:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 143) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-
-webpack compiled with 1 error and 1 warning
-Compiling...
-Failed to compile.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 128:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 143) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-
-webpack compiled with 1 error and 1 warning
-Compiling...
-Failed to compile.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 128:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 143) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 129:8:   'INDIAN_REGIONAL_RECIPES' is not defined  no-undef
-  Line 169:23:  'PERSONAL_SUGGESTION' is not defined      no-undef
-  Line 181:54:  'PERSONAL_SUGGESTION' is not defined      no-undef
-
-Search for the keywords to learn more about each error.
-
-webpack compiled with 1 error and 1 warning
+webpack compiled with 1 warning
 Compiling...
 Compiled with warnings.
 
@@ -133,5 +42,210 @@ WARNING in [eslint]
 src/pages/DietNutritionPage.js
   Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
   Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/pages/DashboardPage.js 10:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DashboardPage.js 11:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+webpack compiled with 2 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/pages/DashboardPage.js 10:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DashboardPage.js 11:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+webpack compiled with 4 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
+  Line 234:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 249) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/pages/DashboardPage.js 10:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DashboardPage.js 11:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/FitnessPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/FitnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+webpack compiled with 6 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/pages/DashboardPage.js 10:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DashboardPage.js 11:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DietNutritionPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DietNutritionPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/FitnessPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/FitnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 8:0-68
+Module not found: Error: Can't resolve '../components/ConfettiCelebration' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+webpack compiled with 8 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/components/ConfettiCelebration.js 5:0-39
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+
+ERROR in ./src/pages/DashboardPage.js 11:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/DietNutritionPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/FitnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+ERROR in ./src/pages/MindfulnessPage.js 9:0-58
+Module not found: Error: Can't resolve '../components/CelebratePopup' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages'
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve './../AppCelebrate.css' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/components/CelebratePopup.js 6:0-31
+Module not found: Error: Can't resolve './../AppCelebrate.css' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+
+ERROR in ./src/components/ConfettiCelebration.js 5:0-39
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+
+webpack compiled with 2 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/components/ConfettiCelebration.js 5:0-39
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+
+webpack compiled with 1 error and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+LOG from webpack.FileSystemInfo
+<w> Managed item /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/canvas-confetti isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 13 hidden lines
+
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+ERROR in ./src/components/ConfettiCelebration.js 5:0-39
+Module not found: Error: Can't resolve 'canvas-confetti' in '/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/components'
+
+webpack compiled with 1 error and 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/pages/DietNutritionPage.js
+  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
+  Line 73:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 88) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
 webpack compiled with 1 warning

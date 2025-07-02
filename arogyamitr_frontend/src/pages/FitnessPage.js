@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { ChartCard, UserProgressChart } from "../components/Charts";
 import { useFitnessDashboard } from "../api/fitness";
+import ConfettiCelebration from "../components/ConfettiCelebration";
+import CelebratePopup from "../components/CelebratePopup";
 import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
- * FitnessPage showing stats, dynamic chart, and interactive exercise log.
+ * FitnessPage showing stats, dynamic chart, interactive exercise log, and streak celebration.
  */
 function FitnessPage() {
   const { data, loading, error, refetch } = useFitnessDashboard();
@@ -28,18 +30,32 @@ function FitnessPage() {
   ];
   const [log, setLog] = useState([]);
   const [newWorkout, setNewWorkout] = useState({ date: "", type: "", duration: "", steps: "", intensity: "" });
+  const [showCelebrate, setShowCelebrate] = useState(false);
 
-  const workouts = data?.recentWorkouts || log.length > 0 ? log : demoWorkouts;
+  const workouts = data?.recentWorkouts || (log.length > 0 ? log : demoWorkouts);
 
   function handleAddWorkout(e) {
     e.preventDefault();
     if (!newWorkout.date || !newWorkout.type) return;
     setLog(l => [...l, { ...newWorkout }]);
     setNewWorkout({ date: "", type: "", duration: "", steps: "", intensity: "" });
+    setShowCelebrate(true);
   }
 
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
+      <ConfettiCelebration
+        trigger={showCelebrate}
+        options={{ colors: ["#4CA65A", "#FFC857", "#2C3E50"], particleCount: 60, spread: 80 }}
+        onComplete={() => setShowCelebrate(false)}
+      />
+      <CelebratePopup
+        open={showCelebrate}
+        icon="🏃‍♂️"
+        onClose={() => setShowCelebrate(false)}
+      >
+        Fitness Streak — Great job!
+      </CelebratePopup>
       <h2>Fitness</h2>
       <div style={{ marginBottom: 16 }}>
         <button

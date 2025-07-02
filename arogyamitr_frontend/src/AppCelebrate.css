@@ -1,0 +1,30 @@
+.celebrate-badge-popup {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2001;
+  background: #fffefa;
+  border: 2px solid #FFC857;
+  color: #4CA65A;
+  border-radius: 24px;
+  padding: 1.5rem 2.5rem;
+  box-shadow: 0 2px 16px rgba(76,166,90,0.18), 0 0 0 4px #FFC85733;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  animation: badgePop 0.7s cubic-bezier(.57,1.65,.56,0.88);
+}
+.celebrate-badge-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.2em;
+  margin-top: -0.9em;
+}
+@keyframes badgePop {
+  0% { transform: translateX(-50%) scale(0.7) rotate(-20deg);}
+  60% {transform: translateX(-50%) scale(1.15) rotate(3deg);}
+  85% {transform: translateX(-50%) scale(0.96);}
+  100% {transform: translateX(-50%) scale(1);}
+}

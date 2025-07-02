@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChartCard, UserProgressChart } from "../components/Charts";
 import { useMindfulnessDashboard } from "../api/mindfulness";
+import ConfettiCelebration from "../components/ConfettiCelebration";
+import CelebratePopup from "../components/CelebratePopup";
 import anim from "../MicroAnimations.module.css";
 
 /**
@@ -27,18 +29,32 @@ function MindfulnessPage() {
   ];
   const [log, setLog] = useState([]);
   const [newLog, setNewLog] = useState({ date: "", mood: "", notes: "" });
+  const [showCelebrate, setShowCelebrate] = useState(false);
 
   const moodData = data?.moodProgress || demoMood;
-  const journal = data?.journal || log.length > 0 ? log : demoJournal;
+  const journal = data?.journal || (log.length > 0 ? log : demoJournal);
 
   function handleAddLog(e) {
     e.preventDefault();
     if (!newLog.date || !newLog.mood) return;
     setLog(lgs => [...lgs, { ...newLog }]);
     setNewLog({ date: "", mood: "", notes: "" });
+    setShowCelebrate(true);
   }
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
+      <ConfettiCelebration
+        trigger={showCelebrate}
+        options={{ particleCount: 90, spread: 88, origin: { y: 0.46 } }}
+        onComplete={() => setShowCelebrate(false)}
+      />
+      <CelebratePopup
+        open={showCelebrate}
+        icon="🧘‍♀️"
+        onClose={() => setShowCelebrate(false)}
+      >
+        Yay! You started your streak! 🌈
+      </CelebratePopup>
       <h2>Mindfulness</h2>
       <div style={{ marginBottom: 16 }}>
         <button

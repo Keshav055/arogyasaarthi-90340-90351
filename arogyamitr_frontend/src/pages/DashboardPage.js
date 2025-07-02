@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useDashboardData } from "../api/dashboard";
 import { ChartCard, UserProgressChart, WellnessInfographic, HealthTipsBar } from "../components/Charts";
+import ConfettiCelebration from "../components/ConfettiCelebration";
+import CelebratePopup from "../components/CelebratePopup";
 import styles from "../MicroAnimations.module.css";
-
-// Existing widgets/components, unchanged (using previously present code, but now cards/buttons will accept animation classes)
 
 function NotificationPanel({ notifications = [] }) {
   return (
@@ -247,14 +247,17 @@ function AIInsightsPanel({ highlights }) {
   );
 }
 
-/**
- * PUBLIC_INTERFACE
- * DashboardPage shows greeting and wellness analytics, charts, tips.
- */
+// PUBLIC_INTERFACE
+// DashboardPage shows greeting, wellness analytics, charts, and now celebratory animation on goals
 function DashboardPage() {
   const { user, logout } = useAuth();
   const { data, loading, error } = useDashboardData();
-  // Demo data...
+
+  // Add state for demo daily goal button and celebration
+  const [todayGoalDone, setTodayGoalDone] = useState(false);
+  const [showCelebrate, setShowCelebrate] = useState(false);
+
+  // Demo content
   const notifications = [
     { text: "Hydration reminder: Drink a glass of water.", time: "10m ago", urgent: false, seen: false },
     { text: "Upcoming appointment: Dr. Wellness at 4:30pm", time: "Today", urgent: true, seen: false },
@@ -304,12 +307,18 @@ function DashboardPage() {
   const userName = user?.email ? user.email.split("@")[0] : "User";
   const containerRef = useRef();
 
-  // Animation on page entry: animate all cards in
+  // Animate cards in
   useEffect(() => {
     if (!containerRef.current) return;
     const cards = containerRef.current.querySelectorAll(`.${styles.microCard}`);
     cards.forEach(card => card.classList.add(styles.microCardEntry));
   }, []);
+
+  // Demo "daily goal complete" with celebration effect
+  function handleGoalComplete() {
+    setTodayGoalDone(true);
+    setShowCelebrate(true);
+  }
 
   return (
     <div
@@ -317,6 +326,18 @@ function DashboardPage() {
       ref={containerRef}
       style={{ margin: "2.5rem auto 1.7rem auto", maxWidth: 820 }}
     >
+      <ConfettiCelebration
+        trigger={showCelebrate}
+        options={{ particleCount: 120, spread: 95, origin: { y: 0.65 } }}
+        onComplete={() => setShowCelebrate(false)}
+      />
+      <CelebratePopup
+        open={showCelebrate}
+        icon="🏅"
+        onClose={() => setShowCelebrate(false)}
+      >
+        Awesome! 🥳 Daily Goal Completed!
+      </CelebratePopup>
       <h2 style={{ marginBottom: 0 }}>Welcome to ArogyaMitr</h2>
       <div style={{ color: "var(--text-secondary)", marginBottom: "0.6rem" }}>
         <strong>Hello, {userName}</strong>
@@ -357,6 +378,28 @@ function DashboardPage() {
 
       {/* Customizable dashboard tiles */}
       <CustomTilesPanel tiles={data?.tiles || customizableTiles} />
+
+      {/* Mini demo goal celebration button */}
+      <div style={{ margin: "1.6em 0 2.1em 0", textAlign: "center" }}>
+        <button
+          className={`btn ${styles.buttonAnim}`}
+          style={{
+            fontWeight: 700,
+            color: todayGoalDone ? "#4CA65A" : "#fff",
+            background: todayGoalDone ? "#E6FFD7" : "#4CA65A",
+            border: todayGoalDone ? "1.5px solid #4CA65A" : "none",
+            borderRadius: 13,
+            fontSize: "1.13em",
+            padding: "0.74em 1.40em"
+          }}
+          onClick={handleGoalComplete}
+          disabled={todayGoalDone}
+          aria-disabled={todayGoalDone}
+        >
+          {todayGoalDone ? "Today's Goal Completed 🏆" : "Mark Today's Goal Complete"}
+        </button>
+        {todayGoalDone && <span style={{ marginLeft: 10, color: "#41A64F", fontWeight: 700, fontSize: "1.07em" }}>Completed!</span>}
+      </div>
 
       {/* Activity Log */}
       <ActivityLogPanel activities={data?.activityLog || activityLog} />
