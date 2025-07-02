@@ -1,18 +1,22 @@
 import React from "react";
+import { ChartCard } from "../components/Charts";
 
 /**
  * PUBLIC_INTERFACE
- * SleepPage stub for sleep analytics and coaching.
+ * SleepPage with sleep analytics chart placeholder.
  */
 function SleepPage() {
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 600 }}>
       <h2>Sleep Optimizer</h2>
-      <p>
-        Visualize sleep data, discover circadian coaching, improve your rest.
-        <br />
-        (Section under construction.)
-      </p>
+      <ChartCard
+        title="Sleep Analytics"
+        description="Track your sleep quality, cycles, and circadian alignment (coming soon)."
+      >
+        <div style={{ color: "var(--text-secondary)", fontSize: "1.1rem" }}>
+          <em>Sleep chart visualization will appear here.</em>
+        </div>
+      </ChartCard>
     </div>
   );
 }
