@@ -10,6 +10,8 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+// Add global playful effect providers
+import { Toaster } from 'react-hot-toast';
 
 // THEME CONTEXT FOR SPA-WIDE LIVE SWITCHING
 const ThemeContext = createContext({
@@ -57,6 +59,21 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
+        {/* Global playful feedback: Custom Toaster for animated badges/notifications */}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              borderRadius: '14px',
+              background: '#f8ffe5',
+              color: '#222',
+              fontWeight: "bold",
+              fontSize: "1.15rem",
+              boxShadow: "0 4px 20px -4px #8ab66155"
+            },
+            duration: 2700,
+          }}
+        />
         <Router>
           <ThemedAppContent />
         </Router>
