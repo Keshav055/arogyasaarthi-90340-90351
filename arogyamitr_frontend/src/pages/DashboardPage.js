@@ -1,41 +1,195 @@
-import React, { useContext, useEffect, useState, useMemo } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../App.css";
 import { AuthContext } from "../context/AuthContext";
 import DragAndDropSortable from "../components/DragAndDropSortable";
-import { calculateStreak, checkBadgeUnlock } from "../components/GamificationUtils";
-import BadgeDisplay from "../components/BadgeDisplay";
-import { ProgressCelebrate } from "../components/ProgressCelebrate";
+import {
+  AiOutlineRobot,
+} from "react-icons/ai";
+import { GiMeal, GiMeditation, GiHealthNormal } from "react-icons/gi";
+import { RiMedal2Fill } from "react-icons/ri";
+import { MdConnectWithoutContact } from "react-icons/md";
+
+// Style tokens for info panel (per design notes)
+const infoPanelStyles = {
+  borderRadius: "14px",
+  background: "#DBF6E1", // --accent-green
+  border: "1.5px solid #8DC89B",
+  margin: "0 auto 2.6rem auto",
+  marginTop: "1.5rem",
+  padding: "2.4rem 2.1rem 2.1rem 2.2rem",
+  boxShadow: "0 3px 18px 0 rgba(140,200,155,0.11)",
+  maxWidth: 1100,
+  display: "flex",
+  flexDirection: "row",
+  gap: "2.6rem",
+  zIndex: 1,
+  position: "relative",
+  fontFamily: '"Helvetica Neue", Arial, sans-serif',
+};
+const infoPanelMobile = {
+  flexDirection: "column",
+  gap: "2.1rem",
+  padding: "2rem 1rem 1.5rem 1rem",
+};
+
+const infoLeftStyles = {
+  flex: 1.26,
+  minWidth: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.4rem",
+  justifyContent: "flex-start",
+};
+
+const infoTitle = {
+  fontWeight: 800,
+  fontSize: "2rem",
+  color: "#152310", // --main-text
+  marginBottom: "0.4rem",
+  letterSpacing: "-0.01em",
+};
+const infoDesc = {
+  color: "#4B4B4B",
+  fontSize: "1.15rem",
+  marginBottom: "0.7rem",
+  lineHeight: 1.6,
+  fontWeight: 500,
+};
+
+const useCaseBox = {
+  background: "#FFFABA",
+  borderLeft: "6px solid #8DC89B",
+  padding: "1.02rem 1.30rem",
+  borderRadius: "0.85rem",
+  color: "#38563e",
+  fontSize: "1.08rem",
+  fontStyle: "italic",
+  margin: "0.2rem 0 0.4rem 0",
+  boxShadow: "0 1px 7px 0 #f6eaad38"
+};
+
+const panelDivider = {
+  width: 2,
+  background: "#cdeed2",
+  opacity: 0.6,
+  margin: "0 2.6rem",
+  border: "none",
+  alignSelf: "stretch",
+  display: "block"
+};
+
+const featuresBlock = {
+  flex: "1 1 370px",
+  minWidth: 270,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+const featuresGrid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(142px,1fr))",
+  gap: "1.25rem",
+  marginTop: "1.03rem",
+  marginBottom: "0.4rem",
+  width: "100%",
+};
+
+const featureCard = {
+  background: "#FAFFFC",
+  border: "1.5px solid #DBF6E1",
+  boxShadow: "0 2px 8px 0 #C8E6C978",
+  borderRadius: "12px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  padding: "1.07rem 0.5rem 1.12rem 0.5rem",
+  minHeight: "130px",
+  transition: "transform 0.14s",
+  outline: "none",
+  textAlign: "center",
+};
+
+const featureLabel = {
+  fontWeight: 600,
+  color: "#28513c",
+  fontSize: "1.09rem",
+  marginTop: "0.39rem",
+};
+const featureDesc = {
+  fontSize: "0.98rem",
+  color: "#607D8B",
+  textAlign: "center",
+  marginTop: "0.10rem"
+};
 
 function DashboardPage() {
   const { user } = useContext(AuthContext);
 
-  // Demo log dates for streak/badge demo
-  const [logDates, setLogDates] = useState([
-    ...Array.from({ length: 8 }, (_, i) => daysAgo(i)).reverse()
-  ]);
-  const [celebrate, setCelebrate] = useState(false);
-  const streakMilestones = [
-    { type: "streak", name: "7 Day Streak", streak: 7, icon: "🔥" },
-    { type: "streak", name: "5 Day Streak", streak: 5, icon: "🌟" },
-    { type: "streak", name: "3 Day Streak", streak: 3, icon: "💪" },
-    { type: "weekly", name: "2 Week Streak", streak: 2, icon: "🏆" }
-  ];
-  const streak = useMemo(() => calculateStreak(logDates), [logDates]);
-  const userProgress = { dailyStreak: streak.daily, weeklyStreak: streak.weekly };
-  const unlocked = useMemo(() => checkBadgeUnlock(streakMilestones, userProgress), [userProgress]);
-
+  // Responsive info panel: collapse to stacked on small screens
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
-    document.title = "Dashboard - ArogyaMitr";
-    if (unlocked.length > 0) setCelebrate(true);
-    // eslint-disable-next-line
-  }, [unlocked.length]);
+    const handler = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
 
-  // Load personalized tile order from localStorage if available
+  // App Features per new requirements (matching icons & text)
+  const featureList = [
+    {
+      icon: <AiOutlineRobot size={36} color="#4CA65A" />,
+      label: "AI Insights",
+      desc: "Personalized guidance and smart recommendations"
+    },
+    {
+      icon: <GiMeal size={36} color="#FFC857" />,
+      label: "Regional Meal Plans",
+      desc: "Culturally authentic & healthy Indian meal planning"
+    },
+    {
+      icon: <GiMeditation size={36} color="#6bbe9c" />,
+      label: "Mindfulness Tools",
+      desc: "Track mood, meditate, and reduce stress"
+    },
+    {
+      icon: <RiMedal2Fill size={36} color="#FDC500" />,
+      label: "Gamified Progress",
+      desc: "Earn badges, celebrate streaks, and level up"
+    },
+    {
+      icon: <MdConnectWithoutContact size={36} color="#2C3E50" />,
+      label: "Care & Connect",
+      desc: "Peer groups, tele-consults, events, and chat"
+    },
+    {
+      icon: <GiHealthNormal size={36} color="#4CA65A" />,
+      label: "Comprehensive Health",
+      desc: "Fitness, sleep, and vitals in one holistic app"
+    }
+  ];
+
+  // Personalized dashboard tile logic
   const defaultTiles = [
-    { id: "progress", label: "Your Progress", icon: "📊" },
-    { id: "healthTip", label: "Health Tip", icon: "💡" },
-    { id: "wellnessPath", label: "Wellness Path", icon: "🧭" },
-    { id: "shortcuts", label: "Shortcuts", icon: "⚡" }
+    {
+      id: "progress",
+      label: "Your Progress",
+      icon: "📊",
+    },
+    {
+      id: "healthTip",
+      label: "Health Tip",
+      icon: "💡",
+    },
+    {
+      id: "wellnessPath",
+      label: "Wellness Path",
+      icon: "🧭",
+    },
+    {
+      id: "shortcuts",
+      label: "Shortcuts",
+      icon: "⚡",
+    },
   ];
 
   const [dashboardTiles, setDashboardTiles] = useState(() => {
@@ -44,9 +198,10 @@ function DashboardPage() {
       try {
         const ids = JSON.parse(saved);
         let fromSaved = ids
-          .map(id => defaultTiles.find(tile => tile.id === id))
+          .map((id) => defaultTiles.find((tile) => tile.id === id))
           .filter(Boolean);
-        fromSaved = fromSaved.concat(defaultTiles.filter(t => !ids.includes(t.id)));
+        // Append any new tiles that weren't in saved order
+        fromSaved = fromSaved.concat(defaultTiles.filter((t) => !ids.includes(t.id)));
         return fromSaved;
       } catch {
         return defaultTiles;
@@ -55,10 +210,11 @@ function DashboardPage() {
     return defaultTiles;
   });
 
+  // Save personalized order if changed
   useEffect(() => {
     window.localStorage.setItem(
       "dashboardTilesOrder",
-      JSON.stringify(dashboardTiles.map(t => t.id))
+      JSON.stringify(dashboardTiles.map((t) => t.id))
     );
   }, [dashboardTiles]);
 
@@ -67,112 +223,159 @@ function DashboardPage() {
       className="dashboard-page"
       style={{
         maxWidth: 1100,
+        minHeight: "calc(100vh - 62px)",
         margin: "0 auto",
-        padding: "0 1.2rem",
+        padding: "0 1.2rem 70px 1.2rem",
         display: "flex",
         flexDirection: "column",
-        alignItems: "stretch",
-        minHeight: "calc(100vh - 64px)",
+        alignItems: "center",
+        background: "transparent"
       }}
     >
-      <h1
-        style={{
-          fontFamily: '"Helvetica Neue", Arial, sans-serif',
-          fontWeight: 800,
-          color: "#152310",
-          fontSize: "2.17rem",
-          letterSpacing: "-0.02em",
-          marginTop: 32,
-          alignSelf: "center",
-          textAlign: "center",
-        }}
-      >
-        Welcome, {user?.name || "ArogyaMitr User"}!
-      </h1>
+      {/* SECTION: Info Panel */}
       <section
+        aria-label="About ArogyaMitr"
         style={{
-          margin: "1.2em 0",
-          alignSelf: "center",
+          ...(windowWidth < 820 ? { ...infoPanelStyles, ...infoPanelMobile } : infoPanelStyles),
           width: "100%",
-          maxWidth: 720,
-          background: "#DBF6E1",
-          borderRadius: "14px",
-          border: "1.5px solid #8DC89B",
-          padding: "2rem 1.8rem",
-          boxShadow: "0 3px 18px 0 rgba(140,200,155,0.08)",
+          marginBottom: "2.5rem"
+        }}
+        className="dashboard-info-panel"
+      >
+        <div style={infoLeftStyles} className="info-content">
+          <div style={infoTitle}>
+            Meet <span style={{ color: "#4CA65A" }}>ArogyaMitr</span>
+          </div>
+          <div style={infoDesc}>
+            ArogyaMitr is a holistic digital wellness companion built for a modern, health-conscious lifestyle.
+            Combining <b>AI-driven guidance</b>, culturally relevant Indian meal planning, and personalized trackers,
+            it guides you toward healthy, sustainable habits with joy and gamification.
+          </div>
+          <div style={useCaseBox}>
+            <b>Example Use-case: </b>
+            <span>
+              Priya, a busy professional, uses ArogyaMitr every day to check her morning dashboard,
+              plan her South Indian meals, track meditation streaks, and book a quick tele-consultation.
+              She enjoys the playful rewards and insightful nudges that help her stay motivated and empowered.
+            </span>
+          </div>
+        </div>
+        {windowWidth >= 600 && <hr style={panelDivider} className="info-panel-divider" />}
+        <div style={featuresBlock}>
+          <div
+            style={{
+              fontWeight: 700,
+              fontSize: "1.13rem",
+              marginBottom: "0.2rem",
+              color: "#4CA65A",
+              letterSpacing: "0.012em",
+              alignSelf: "center"
+            }}
+          >
+            Key Features
+          </div>
+          <div style={featuresGrid} className="feature-grid">
+            {featureList.map(({ icon, label, desc }, idx) => (
+              <div
+                key={label + idx}
+                style={{
+                  ...featureCard,
+                  boxShadow: idx % 2 === 1 ? "0 1.5px 9px 0 #b3fad7ad" : featureCard.boxShadow,
+                  cursor: "pointer",
+                  margin: "0 auto"
+                }}
+                tabIndex={0}
+                aria-label={label}
+              >
+                <div>{icon}</div>
+                <div style={featureLabel}>{label}</div>
+                <div style={featureDesc}>{desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* SECTION: Dashboard Title & Tiles */}
+      <section
+        className="dashboard-greeting-section"
+        style={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          margin: "0 auto 2rem auto"
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "1em", flexWrap: "wrap", justifyContent: "center" }}>
-          <span role="img" aria-label="flame" style={{ fontSize: "2em" }}>🔥</span>
-          <b>Daily Streak:</b> <span>{streak.daily} days</span>
-          <span role="img" aria-label="trophy" style={{ fontSize: "2em" }}>🏆</span>
-          <b>Weekly Streak:</b> <span>{streak.weekly} weeks</span>
-        </div>
-        <BadgeDisplay badges={unlocked} animate />
-      </section>
-      {celebrate && <ProgressCelebrate show={celebrate} message={`Congrats! ${unlocked[unlocked.length-1]?.name ?? ""} 🚀`} onDone={() => setCelebrate(false)} />}
-      <div
-        className="dashboard-tiles"
-        style={{
-          marginBottom: 16,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          flexWrap: "wrap",
-          gap: 20
-        }}
-      >
-        <DragAndDropSortable
-          items={dashboardTiles}
-          setItems={setDashboardTiles}
-          direction="horizontal"
-          renderItem={tile => (
-            <div
-              key={tile.id}
-              className="dashboard-tile"
-              style={{
-                background: "#F7FFF7",
-                border: "2px solid #E0E5DF",
-                borderRadius: 16,
-                padding: "18px 24px",
-                minWidth: 130,
-                minHeight: 90,
-                boxShadow: "0 2px 8px rgba(76,166,90,0.09)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                fontSize: "1.3rem",
-                fontWeight: 500,
-                cursor: "grab",
-                touchAction: "manipulation",
-                userSelect: "none",
-                transition: "background 0.15s"
-              }}
-            >
-              <span className="tile-icon" aria-label={tile.label} style={{ fontSize: "2rem" }}>
-                {tile.icon}
-              </span>
-              <div className="tile-label" style={{ marginTop: 5, fontSize: "1rem" }}>
-                {tile.label}
+        <h1
+          style={{
+            fontFamily: '"Helvetica Neue", Arial, sans-serif',
+            fontWeight: 800,
+            color: "#152310",
+            fontSize: "2.1rem",
+            letterSpacing: "-0.02em",
+            margin: 0,
+            marginBottom: 8,
+            alignSelf: "center",
+            textAlign: "center"
+          }}
+        >
+          Welcome, {user?.name || "ArogyaMitr User"}!
+        </h1>
+        <div
+          className="dashboard-tiles"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1.7rem",
+            width: "100%",
+            marginTop: 10,
+            marginBottom: 8
+          }}
+        >
+          <DragAndDropSortable
+            items={dashboardTiles}
+            setItems={setDashboardTiles}
+            direction="horizontal"
+            renderItem={(tile) => (
+              <div
+                key={tile.id}
+                className="dashboard-tile"
+                style={{
+                  background: "#F7FFF7",
+                  border: "2px solid #E0E5DF",
+                  borderRadius: 16,
+                  padding: "18px 24px",
+                  minWidth: 130,
+                  minHeight: 90,
+                  boxShadow: "0 2px 8px rgba(76,166,90,0.09)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  fontSize: "1.3rem",
+                  fontWeight: 500,
+                  cursor: "grab",
+                  touchAction: "manipulation",
+                  userSelect: "none",
+                  transition: "background 0.15s",
+                  margin: "0 .5rem"
+                }}
+              >
+                <span className="tile-icon" aria-label={tile.label} style={{ fontSize: "2rem" }}>
+                  {tile.icon}
+                </span>
+                <div className="tile-label" style={{ marginTop: 5, fontSize: "1rem" }}>
+                  {tile.label}
+                </div>
               </div>
-            </div>
-          )}
-        />
-      </div>
-      {/* ...other dashboard content... */}
+            )}
+          />
+        </div>
+      </section>
+      {/* Add further dashboard sections below as needed */}
     </div>
   );
-}
-
-function daysAgo(n) {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return d.toISOString().split('T')[0];
 }
 
 export default DashboardPage;
