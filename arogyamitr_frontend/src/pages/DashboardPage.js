@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useDashboardData } from "../api/dashboard";
 import { ChartCard, UserProgressChart, WellnessInfographic, HealthTipsBar } from "../components/Charts";
+import styles from "../MicroAnimations.module.css";
 
-// --- DEMO widget components (to be elevated and reused in other pages for modularity) ---
+// Existing widgets/components, unchanged (using previously present code, but now cards/buttons will accept animation classes)
 
-// Notification panel widget
 function NotificationPanel({ notifications = [] }) {
   return (
     <ChartCard title="Notifications" description="Reminders & new activity">
@@ -14,22 +14,24 @@ function NotificationPanel({ notifications = [] }) {
           <li style={{ color: "#888" }}>No unread notifications.</li>
         )}
         {notifications.map((notif, idx) => (
-          <li key={idx} style={{
-            background: notif.seen ? "#F8FFF7" : "#F1FFEB",
-            padding: "8px 13px",
-            borderRadius: 8,
-            marginBottom: 5,
-            fontWeight: notif.seen ? 400 : 600,
-            color: notif.urgent ? "#EE4266" : undefined,
-            borderLeft: notif.urgent ? "3px solid #EE4266" : "3px solid #4CA65A"
-          }}>
-            <span style={{ marginRight: 6 }}>
-              {notif.urgent ? "⚠️" : "🔔"}
-            </span>
+          <li
+            key={idx}
+            className={styles.microCard}
+            style={{
+              background: notif.seen ? "#F8FFF7" : "#F1FFEB",
+              padding: "8px 13px",
+              borderRadius: 8,
+              marginBottom: 5,
+              fontWeight: notif.seen ? 400 : 600,
+              color: notif.urgent ? "#EE4266" : undefined,
+              borderLeft: notif.urgent ? "3px solid #EE4266" : "3px solid #4CA65A",
+              transition: "all .15s"
+            }}
+            tabIndex={0}
+          >
+            <span style={{ marginRight: 6 }}>{notif.urgent ? "⚠️" : "🔔"}</span>
             <span>{notif.text}</span>
-            <span style={{ float: "right", color: "#aaa", fontWeight: 400, fontSize: "0.9em" }}>
-              {notif.time}
-            </span>
+            <span style={{ float: "right", color: "#aaa", fontWeight: 400, fontSize: "0.9em" }}>{notif.time}</span>
           </li>
         ))}
       </ul>
@@ -37,7 +39,6 @@ function NotificationPanel({ notifications = [] }) {
   );
 }
 
-// Quick health check-in widget
 function QuickCheckin({ onSubmit }) {
   const [mood, setMood] = useState("");
   const [energy, setEnergy] = useState("");
@@ -58,13 +59,17 @@ function QuickCheckin({ onSubmit }) {
       title="Quick Health Check-In"
       description="How are you feeling today?"
     >
-      <form style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }} onSubmit={handleSubmit}>
+      <form
+        style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}
+        onSubmit={handleSubmit}
+      >
         <span style={{ fontSize: "1.18em", marginRight: 5 }}>Mood:</span>
         <select
           value={mood}
           required
           onChange={e => setMood(e.target.value)}
           style={{ padding: "5px 9px", borderRadius: 7, fontSize: "1em" }}
+          className={styles.microCard}
         >
           <option value="">Select</option>
           <option value="😊">😊 Good</option>
@@ -79,24 +84,31 @@ function QuickCheckin({ onSubmit }) {
           required
           onChange={e => setEnergy(e.target.value)}
           style={{ padding: "5px 9px", borderRadius: 7, fontSize: "1em" }}
+          className={styles.microCard}
         >
           <option value="">Select</option>
           <option value="High">High</option>
           <option value="Moderate">Moderate</option>
           <option value="Low">Low</option>
         </select>
-        <button className="btn" type="submit" style={{ borderRadius: 8, padding: "6px 16px" }} disabled={submitted}>
+        <button
+          className={`btn ${styles.microBtn}`}
+          type="submit"
+          style={{ borderRadius: 8, padding: "6px 16px" }}
+          disabled={submitted}
+        >
           {submitted ? "✓ Saved" : "Submit"}
         </button>
       </form>
       {submitted && (
-        <div style={{ color: "#38B3A7", marginTop: 9 }}>Thank you for checking in!</div>
+        <div className={styles.microFadeIn} style={{ color: "#38B3A7", marginTop: 9 }}>
+          Thank you for checking in!
+        </div>
       )}
     </ChartCard>
   );
 }
 
-// Upcoming events/appointments widget
 function EventsCard({ events = [] }) {
   return (
     <ChartCard title="Upcoming Appointments & Events" description="Stay on track with your wellness schedule">
@@ -105,6 +117,7 @@ function EventsCard({ events = [] }) {
         {events.map((ev, idx) => (
           <li
             key={idx}
+            className={styles.microPopIn}
             style={{
               display: "flex",
               alignItems: "center",
@@ -113,6 +126,7 @@ function EventsCard({ events = [] }) {
               paddingLeft: 10,
               fontWeight: 500
             }}
+            tabIndex={0}
           >
             <span style={{ fontSize: "1.17em", marginRight: 8 }}>
               {ev.type === "appointment" ? "📅" : "🏃"}
@@ -130,42 +144,47 @@ function EventsCard({ events = [] }) {
   );
 }
 
-// Customizable dashboard tile/card widget
 function CustomTilesPanel({ tiles, onOrderChange }) {
-  // For demonstration, allow drag-and-drop rearrange of sections (stubbed for now)
   return (
     <ChartCard title="Customizable Dashboard" description="Your prioritized wellness modules">
-      <div style={{
-        display: "flex",
-        gap: 13,
-        flexWrap: "wrap",
-        justifyContent: "stretch"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          gap: 13,
+          flexWrap: "wrap",
+          justifyContent: "stretch"
+        }}
+      >
         {tiles.map((tile, idx) => (
-          <div key={idx} style={{
-            background: "#F6FFF9",
-            border: "1px solid #e0efeb",
-            borderRadius: 13,
-            padding: "1.1em 1.4em",
-            minWidth: 130,
-            marginBottom: 8,
-            boxShadow: "0 2px 8px rgba(60,140,100,0.07)",
-            cursor: "pointer"
-          }}>
+          <div
+            key={idx}
+            className={`${styles.microCard} ${styles.microPopIn}`}
+            style={{
+              background: "#F6FFF9",
+              border: "1px solid #e0efeb",
+              borderRadius: 13,
+              padding: "1.1em 1.4em",
+              minWidth: 130,
+              marginBottom: 8,
+              boxShadow: "0 2px 8px rgba(60,140,100,0.07)",
+              cursor: "pointer",
+              transition: "box-shadow 0.14s"
+            }}
+            tabIndex={0}
+          >
             <div style={{ fontSize: "1.7em", marginBottom: 7 }}>{tile.icon}</div>
             <div style={{ fontWeight: 700 }}>{tile.label}</div>
             <div style={{ color: "#4CA65A", fontSize: "0.98em" }}>{tile.desc}</div>
           </div>
         ))}
       </div>
-      <div style={{ color: "#bbb", fontSize: "0.93em", marginTop: 8 }}>
+      <div className={styles.microFadeIn} style={{ color: "#bbb", fontSize: "0.93em", marginTop: 8 }}>
         (Drag & drop to re-order coming soon)
       </div>
     </ChartCard>
   );
 }
 
-// Activity log/recent activity panel
 function ActivityLogPanel({ activities }) {
   return (
     <ChartCard title="Recent Activity" description="Your latest wellness actions & logs">
@@ -176,12 +195,14 @@ function ActivityLogPanel({ activities }) {
           {activities.map((act, i) => (
             <li
               key={i}
+              className={styles.microCard}
               style={{
                 display: "flex",
                 alignItems: "center",
                 borderBottom: "1px solid #e0efeb",
                 padding: "7px 0"
               }}
+              tabIndex={0}
             >
               <span style={{ fontSize: "1.25em", marginRight: 10 }}>{act.icon}</span>
               <span>
@@ -196,7 +217,6 @@ function ActivityLogPanel({ activities }) {
   );
 }
 
-// Deeper data insights/AI highlights widget
 function AIInsightsPanel({ highlights }) {
   return (
     <ChartCard title="AI Health Insights" description="Personalized highlights & suggested actions">
@@ -207,6 +227,7 @@ function AIInsightsPanel({ highlights }) {
           {highlights.map((h, idx) => (
             <li
               key={idx}
+              className={styles.microInfoPanelEntry}
               style={{
                 background: "#FAFAFF",
                 borderRadius: 9,
@@ -214,6 +235,7 @@ function AIInsightsPanel({ highlights }) {
                 padding: "0.72em 1.15em",
                 marginBottom: 6
               }}
+              tabIndex={0}
             >
               <b>Insight:</b> {h.text}
               <span style={{ color: "#38B3A7", marginLeft: 9, fontWeight: 400 }}>{h.suggestedAction}</span>
@@ -232,8 +254,7 @@ function AIInsightsPanel({ highlights }) {
 function DashboardPage() {
   const { user, logout } = useAuth();
   const { data, loading, error } = useDashboardData();
-
-  // Demo data for various widgets (to be replaced with API or backend data as connected)
+  // Demo data...
   const notifications = [
     { text: "Hydration reminder: Drink a glass of water.", time: "10m ago", urgent: false, seen: false },
     { text: "Upcoming appointment: Dr. Wellness at 4:30pm", time: "Today", urgent: true, seen: false },
@@ -259,8 +280,6 @@ function DashboardPage() {
     { icon: "🧘", label: "Mindfulness", desc: "Journaling, meditation" },
     { icon: "🛌", label: "Sleep", desc: "Sleep analytics" }
   ];
-
-  // Demo fallback (remove when backend returns data)
   const demoProgress = [
     { name: "Week 1", score: 48 },
     { name: "Week 2", score: 63 },
@@ -282,20 +301,32 @@ function DashboardPage() {
     { tip: "Track sleep", users: 67 }
   ];
 
-  // Assume API data (show demo if not available)
   const userName = user?.email ? user.email.split("@")[0] : "User";
+  const containerRef = useRef();
+
+  // Animation on page entry: animate all cards in
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const cards = containerRef.current.querySelectorAll(`.${styles.microCard}`);
+    cards.forEach(card => card.classList.add(styles.microCardEntry));
+  }, []);
 
   return (
-    <div className="container" style={{ margin: "2.5rem auto 1.7rem auto", maxWidth: 820 }}>
+    <div
+      className="container"
+      ref={containerRef}
+      style={{ margin: "2.5rem auto 1.7rem auto", maxWidth: 820 }}
+    >
       <h2 style={{ marginBottom: 0 }}>Welcome to ArogyaMitr</h2>
       <div style={{ color: "var(--text-secondary)", marginBottom: "0.6rem" }}>
         <strong>Hello, {userName}</strong>
       </div>
       <div>
-        <button className="btn" onClick={logout}>Logout</button>
+        <button className={`btn ${styles.microBtn}`} onClick={logout}>Logout</button>
       </div>
       <div style={{ margin: "1.5rem 0" }}>
         <span
+          className={styles.microFadeIn}
           style={{
             background: "var(--bg-secondary)",
             color: "var(--text-primary)",
@@ -307,39 +338,43 @@ function DashboardPage() {
             display: "inline-block"
           }}
         >
-          {loading
-            ? "Loading insights..."
-            : "Your holistic dashboard is ready!"}
+          {loading ? "Loading insights..." : "Your holistic dashboard is ready!"}
         </span>
       </div>
       {error && <div style={{ color: "#EE4266", marginBottom: 12 }}>Error loading data: {error}</div>}
 
-      {/* --- Notification panel --- */}
+      {/* Notification panel */}
       <NotificationPanel notifications={data?.notifications || notifications} />
 
-      {/* --- Quick Health Check-In --- */}
+      {/* Quick Health Check-In */}
       <QuickCheckin />
 
-      {/* --- Appointments/events card --- */}
+      {/* Appointments/events card */}
       <EventsCard events={data?.events || events} />
 
-      {/* --- AI Insights/suggested actions --- */}
+      {/* AI Insights/suggested actions */}
       <AIInsightsPanel highlights={data?.aiHighlights || aiHighlights} />
 
-      {/* --- Customizable dashboard tiles --- */}
+      {/* Customizable dashboard tiles */}
       <CustomTilesPanel tiles={data?.tiles || customizableTiles} />
 
-      {/* --- Activity Log --- */}
+      {/* Activity Log */}
       <ActivityLogPanel activities={data?.activityLog || activityLog} />
 
-      {/* --- Progress Chart --- */}
-      <UserProgressChart data={data?.progress || demoProgress} />
+      {/* Progress Chart */}
+      <div className={styles.microCard}>
+        <UserProgressChart data={data?.progress || demoProgress} />
+      </div>
 
-      {/* --- Wellness Radar --- */}
-      <WellnessInfographic data={data?.wellness || demoWellness} />
+      {/* Wellness Radar */}
+      <div className={styles.microCard}>
+        <WellnessInfographic data={data?.wellness || demoWellness} />
+      </div>
 
-      {/* --- Trending Health Tips Bar --- */}
-      <HealthTipsBar data={data?.healthTips || demoTips} />
+      {/* Trending Health Tips Bar */}
+      <div className={styles.microCard}>
+        <HealthTipsBar data={data?.healthTips || demoTips} />
+      </div>
     </div>
   );
 }

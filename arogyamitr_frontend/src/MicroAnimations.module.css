@@ -1,0 +1,86 @@
+:root {
+  --transition-fast: 0.18s cubic-bezier(.4,0,.2,1);
+  --transition-slow: 0.38s cubic-bezier(.4,0,.2,1);
+}
+
+/* Card Hover/Entry Animation */
+.microCard {
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast), background var(--transition-slow);
+  will-change: transform, box-shadow, background;
+}
+
+.microCardEntry {
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  animation: cardEntry 340ms cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes cardEntry {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.microCard:hover,
+.microCard:focus-visible {
+  box-shadow: 0 6px 24px 3px rgba(51,104,61,0.17), 0 1.5px 5px 0 rgba(76,166,90,0.09);
+  transform: scale(1.028) translateY(-2px) rotateZ(-0.5deg);
+  background: linear-gradient(97deg,#ecffe7 50%,#f4fbfa 100%);
+}
+
+/* Button Pulse & Tap Feedback */
+.microBtn {
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+  will-change: transform, background, box-shadow;
+}
+.microBtn:active {
+  transform: scale(0.96);
+  filter: brightness(0.98);
+  box-shadow: 0 1.5px 4px 0 rgba(76,166,90,0.07);
+}
+.microBtn:hover,
+.microBtn:focus-visible {
+  box-shadow: 0 0 0 3px #EDFACF80;
+  background: linear-gradient(99deg,#e6f9db 50%,#fff 100%);
+}
+
+/* Chart Entry/Progress Bar Animation */
+@keyframes chartGrow {
+  from { transform: scaleX(0.07);}
+  to { transform: scaleX(1);}
+}
+
+.microChartAnimate {
+  animation: chartGrow 480ms cubic-bezier(.17,.84,.44,1.01) forwards;
+  transform-origin: left;
+}
+
+/* Info Panel Bounce-on-load */
+@keyframes infoBounceIn {
+  0% {opacity:0;transform:scale(.88) translateY(10px);}
+  62% {opacity:1; transform:scale(1.04) translateY(-4px);}
+  100% {opacity:1;transform:scale(1) translateY(0);}
+}
+.microInfoPanelEntry{
+  animation: infoBounceIn 420ms cubic-bezier(.57,.32,.45,1.16) backwards;
+  opacity: 1;
+}
+
+/* Universal microfade for tooltips/informers */
+@keyframes microFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.microFadeIn {
+  animation: microFadeIn 240ms cubic-bezier(.4,0,.2,1) both;
+}
+
+/* Soft Pop (used in badges, alerts) */
+@keyframes microPopIn {
+  0% {opacity:0;transform:scale(.5);}
+  85%{opacity:1;transform:scale(1.07);}
+  100%{transform:scale(1); opacity:1;}
+}
+.microPopIn {
+  animation: microPopIn 390ms cubic-bezier(.57,.32,.45,1.16) both;
+}

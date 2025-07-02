@@ -3,13 +3,14 @@ import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
   CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Cell
 } from "recharts";
+import styles from "../MicroAnimations.module.css";
 
 /**
  * ChartCard wraps each chart with header and description styling.
  */
 export function ChartCard({ title, description, children }) {
   return (
-    <div style={{
+    <div className={`${styles.microCard} ${styles.microCardEntry}`} style={{
       background: "var(--card-bg)",
       borderRadius: "16px",
       padding: "1.5rem",
@@ -17,6 +18,7 @@ export function ChartCard({ title, description, children }) {
       boxShadow: "var(--box-shadow)",
       border: "1.2px solid var(--border)",
       transition: "background 0.21s, color 0.15s",
+      animation: undefined // Don't run entry animation twice if already using microCardEntry
     }}>
       <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--primary-text)" }}>{title}</h3>
       {description && <div style={{ marginBottom: 12, color: "var(--inactive-gray)" }}>{description}</div>}
@@ -27,12 +29,9 @@ export function ChartCard({ title, description, children }) {
 
 /**
  * DonutChart: Accessible donut chart following theme variables.
- * Main overlay and legends use high-contrast text for readability.
  */
 export const DonutChart = ({ consumed, total }) => {
   const percent = Math.round((consumed / total) * 100);
-
-  // Chart colors: arc (active), arc (remaining)
   const arcConsumed = "var(--accent-green)";
   const arcRemaining = "var(--chart-inactive-bg)";
 
@@ -41,7 +40,7 @@ export const DonutChart = ({ consumed, total }) => {
   const arc1 = (circumference * percent) / 100;
 
   return (
-    <div style={{ position: "relative", width: 140, height: 140 }}>
+    <div style={{ position: "relative", width: 140, height: 140 }} className={styles.microChartAnimate}>
       <svg width="140" height="140">
         <circle
           r={r}
@@ -62,9 +61,7 @@ export const DonutChart = ({ consumed, total }) => {
           strokeLinecap="round"
         />
       </svg>
-      {/* Overlay percentage - always readable, strictly use --primary-text with white shadow for contrast */}
       <div className="chart-label-overlay">{percent}%</div>
-      {/* Accessible legends */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: 13, gap: 20 }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <span
@@ -114,7 +111,7 @@ export function UserProgressChart({ data }) {
   return (
     <ChartCard title="Your Progress" description="Weekly improvement towards your wellness goal">
       <ResponsiveContainer>
-        <LineChart data={data}>
+        <LineChart data={data} className={styles.microChartAnimate}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis dataKey="name" tick={{ fill: "var(--primary-text)" }} />
           <YAxis domain={[0,100]} tick={{ fill: "var(--primary-text)" }} />
@@ -133,6 +130,7 @@ export function UserProgressChart({ data }) {
             stroke="var(--primary)"
             strokeWidth={3}
             dot={{ r: 5, fill: "var(--accent)" }}
+            className={styles.microChartAnimate}
           />
         </LineChart>
       </ResponsiveContainer>
@@ -149,12 +147,12 @@ export function WellnessInfographic({ data }) {
   return (
     <ChartCard title="Wellness Overview" description="Your balance across core wellness areas">
       <ResponsiveContainer>
-        <RadarChart data={data}>
+        <RadarChart data={data} className={styles.microChartAnimate}>
           <PolarGrid stroke="var(--border)" />
           <PolarAngleAxis dataKey="aspect" tick={{ fill: "var(--primary-text)" }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={ { fill: "var(--text-muted)" }} tickCount={6} />
           <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />
-          <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.35} />
+          <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.35} className={styles.microChartAnimate} />
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -170,7 +168,7 @@ export function HealthTipsBar({ data }) {
   return (
     <ChartCard title="Trending Health Tips" description="Most followed wellness actions this month">
       <ResponsiveContainer>
-        <BarChart data={data}>
+        <BarChart data={data} className={styles.microChartAnimate}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis dataKey="tip" tick={{ fill: "var(--inactive-gray)", fontSize: 11 }} />
           <YAxis allowDecimals={false} tick={{ fill: "var(--inactive-gray)" }} />
@@ -183,7 +181,7 @@ export function HealthTipsBar({ data }) {
             itemStyle={{ color: "var(--primary-text)" }}
             labelStyle={{ color: "var(--inactive-gray)" }}
           />
-          <Bar dataKey="users" fill="var(--secondary)" />
+          <Bar dataKey="users" fill="var(--secondary)" className={styles.microChartAnimate} />
         </BarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -212,6 +210,7 @@ export function HydrationPie({ value, goal }) {
             outerRadius={95}
             fill="var(--primary)"
             label={({ name }) => name}
+            className={styles.microChartAnimate}
           >
             {data.map((entry, idx) =>
               <Cell
@@ -236,7 +235,6 @@ export function HydrationPie({ value, goal }) {
           />
         </PieChart>
       </ResponsiveContainer>
-      {/* Accessible central percent (large, always --primary-text, with white shadow) */}
       <div
         className="chart-label-overlay"
         style={{
@@ -265,7 +263,7 @@ export function NutrientRadar({ data }) {
   return (
     <ChartCard title="Nutrient Intake" description="Macronutrient distribution vs. recommended goals">
       <ResponsiveContainer>
-        <RadarChart data={data}>
+        <RadarChart data={data} className={styles.microChartAnimate}>
           <PolarGrid stroke="var(--border)" />
           <PolarAngleAxis dataKey="name" tick={{ fill: "var(--primary-text)" }}/>
           <PolarRadiusAxis angle={25}
@@ -277,12 +275,14 @@ export function NutrientRadar({ data }) {
             stroke="var(--primary)"
             fill="var(--primary)"
             fillOpacity={0.40}
+            className={styles.microChartAnimate}
           />
           <Radar name="Goal"
             dataKey="goal"
             stroke="var(--secondary)"
             fill="var(--secondary)"
             fillOpacity={0.23}
+            className={styles.microChartAnimate}
           />
           <Legend />
           <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />

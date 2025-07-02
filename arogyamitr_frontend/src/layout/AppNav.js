@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../AppTheme.module.css";
+import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
- * AppNav renders the app's top navigation bar with responsive mobile/desktop behavior, theme colors, and accessibility.
+ * AppNav renders the app's top navigation bar with responsive mobile/desktop behavior, theme colors, and accessibility, with playful micro-animations.
  */
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard" },
@@ -19,23 +20,22 @@ function AppNav({ isAuthenticated, onLogout }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Mobile nav toggle
   function toggleDrawer() {
     setDrawerOpen((prev) => !prev);
   }
+
   function handleNavClick(path) {
     setDrawerOpen(false);
     navigate(path);
   }
 
-  // Used to control active nav on mobile for color
   const getMobileActiveStyle = (to) =>
     window.location.pathname === to
       ? {
           background: "var(--accent)",
           color: "var(--primary-dark)",
           fontWeight: 700,
-          borderRadius: 9
+          borderRadius: 9,
         }
       : {
           background: "transparent",
@@ -79,7 +79,6 @@ function AppNav({ isAuthenticated, onLogout }) {
         <span style={{ color: "var(--primary)" }}>Arogya</span>
         <span style={{ color: "var(--secondary)" }}>Mitr</span>
       </NavLink>
-
       {/* Desktop nav */}
       <nav
         className={styles.nav}
@@ -96,7 +95,7 @@ function AppNav({ isAuthenticated, onLogout }) {
               to={item.to}
               end
               className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
+                `${isActive ? styles.navLinkActive : styles.navLink} ${anim.microBtn}`
               }
               style={({ isActive }) => ({
                 color: isActive
@@ -115,6 +114,7 @@ function AppNav({ isAuthenticated, onLogout }) {
                 outline: "none",
                 border: "none",
               })}
+              tabIndex={0}
             >
               {item.label}
             </NavLink>
@@ -123,7 +123,7 @@ function AppNav({ isAuthenticated, onLogout }) {
           <>
             <NavLink
               to="/login"
-              className={styles.navLink}
+              className={`${styles.navLink} ${anim.microBtn}`}
               style={{
                 color: "var(--primary-text)",
                 fontWeight: 500,
@@ -134,12 +134,13 @@ function AppNav({ isAuthenticated, onLogout }) {
                 textDecoration: "none",
                 lineHeight: 1.25,
               }}
+              tabIndex={0}
             >
               Login
             </NavLink>
             <NavLink
               to="/signup"
-              className={styles.navLink}
+              className={`${styles.navLink} ${anim.microBtn}`}
               style={{
                 color: "var(--primary-text)",
                 fontWeight: 500,
@@ -150,6 +151,7 @@ function AppNav({ isAuthenticated, onLogout }) {
                 textDecoration: "none",
                 lineHeight: 1.25,
               }}
+              tabIndex={0}
             >
               Sign Up
             </NavLink>
@@ -157,7 +159,7 @@ function AppNav({ isAuthenticated, onLogout }) {
         )}
         {isAuthenticated && (
           <button
-            className={styles.cta}
+            className={`${styles.cta} ${anim.microBtn}`}
             onClick={onLogout}
             tabIndex={0}
             style={{
@@ -178,7 +180,6 @@ function AppNav({ isAuthenticated, onLogout }) {
           </button>
         )}
       </nav>
-
       {/* Mobile nav toggle */}
       <button
         className={styles.mobileNavToggle}
@@ -213,7 +214,6 @@ function AppNav({ isAuthenticated, onLogout }) {
         onClick={toggleDrawer}
         onKeyDown={e => (e.key === "Enter" || e.key === " ") && toggleDrawer()}
       >☰</span>
-
       {/* Responsive mobile nav drawer */}
       {drawerOpen && (
         <div
@@ -248,6 +248,7 @@ function AppNav({ isAuthenticated, onLogout }) {
             <button
               aria-label="Close menu"
               onClick={toggleDrawer}
+              className={anim.microBtn}
               style={{
                 position: "absolute",
                 right: 16,
@@ -265,7 +266,7 @@ function AppNav({ isAuthenticated, onLogout }) {
                   key={item.to}
                   role="button"
                   tabIndex={0}
-                  className={styles.mobileNavLink}
+                  className={`${styles.mobileNavLink} ${anim.microBtn} ${anim.microPopIn}`}
                   onClick={() => handleNavClick(item.to)}
                   onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick(item.to)}
                   style={{
@@ -289,7 +290,7 @@ function AppNav({ isAuthenticated, onLogout }) {
                 <div
                   role="button"
                   tabIndex={0}
-                  className={styles.mobileNavLink}
+                  className={`${styles.mobileNavLink} ${anim.microBtn}`}
                   onClick={() => handleNavClick("/login")}
                   onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick("/login")}
                   style={{
@@ -307,7 +308,7 @@ function AppNav({ isAuthenticated, onLogout }) {
                 <div
                   role="button"
                   tabIndex={0}
-                  className={styles.mobileNavLink}
+                  className={`${styles.mobileNavLink} ${anim.microBtn}`}
                   onClick={() => handleNavClick("/signup")}
                   onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleNavClick("/signup")}
                   style={{
@@ -326,7 +327,7 @@ function AppNav({ isAuthenticated, onLogout }) {
             )}
             {isAuthenticated && (
               <button
-                className={styles.cta}
+                className={`${styles.cta} ${anim.microBtn}`}
                 onClick={onLogout}
                 style={{
                   width: "72vw",
@@ -347,7 +348,6 @@ function AppNav({ isAuthenticated, onLogout }) {
           </div>
         </div>
       )}
-      {/* Inline styles for responsive nav: show hamburger and hide desktop nav on mobile */}
       <style>{`
         @media (max-width: 900px) {
           .${styles.nav} {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
+import "./MicroAnimations.module.css";
 import { AuthProvider } from "./context/AuthContext";
 import MainLayout from "./layout/MainLayout";
 import AppNav from "./layout/AppNav";
@@ -10,7 +11,6 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-// Add global playful effect providers
 import { Toaster } from 'react-hot-toast';
 
 // THEME CONTEXT FOR SPA-WIDE LIVE SWITCHING
@@ -27,24 +27,19 @@ export function useTheme() {
  * ThemeProvider handles persistent theme state and <html data-theme> sync.
  */
 function ThemeProvider({ children }) {
-  // Get initial theme from localStorage or system preference on load
   const getInitialTheme = () => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("color-theme");
       if (saved === "dark" || saved === "light") return saved;
-      // Auto-detect
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
     }
     return "light";
   };
   const [theme, setTheme] = useState(getInitialTheme);
 
-  // Whenever theme changes: update <html> and persist
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    try {
-      window.localStorage.setItem("color-theme", theme);
-    } catch (e) {}
+    try { window.localStorage.setItem("color-theme", theme); } catch (e) {}
   }, [theme]);
 
   return (
@@ -59,7 +54,6 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        {/* Global playful feedback: Custom Toaster for animated badges/notifications */}
         <Toaster
           position="top-center"
           toastOptions={{
@@ -87,7 +81,6 @@ function ThemedAppContent() {
   const { isAuthenticated, logout } = useAuth();
   const { theme, setTheme } = useTheme();
 
-  // Desktop: nav sits at top; theme toggle in nav bar
   return (
     <div className={styles.appContainer}>
       <AppNav isAuthenticated={isAuthenticated} onLogout={logout} />
