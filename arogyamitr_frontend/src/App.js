@@ -111,9 +111,7 @@ function ThemedAppContent() {
             path="/wellness-path"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/WellnessPathPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/WellnessPathPage").default)}
               </ProtectedRoute>
             }
           />
@@ -121,9 +119,7 @@ function ThemedAppContent() {
             path="/diet-nutrition"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/DietNutritionPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/DietNutritionPage").default)}
               </ProtectedRoute>
             }
           />
@@ -131,9 +127,7 @@ function ThemedAppContent() {
             path="/fitness"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/FitnessPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/FitnessPage").default)}
               </ProtectedRoute>
             }
           />
@@ -141,9 +135,7 @@ function ThemedAppContent() {
             path="/mindfulness"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/MindfulnessPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/MindfulnessPage").default)}
               </ProtectedRoute>
             }
           />
@@ -151,9 +143,7 @@ function ThemedAppContent() {
             path="/sleep"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/SleepPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/SleepPage").default)}
               </ProtectedRoute>
             }
           />
@@ -161,9 +151,7 @@ function ThemedAppContent() {
             path="/product-scanner"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/ProductScannerPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/ProductScannerPage").default)}
               </ProtectedRoute>
             }
           />
@@ -171,9 +159,7 @@ function ThemedAppContent() {
             path="/ethical-business-directory"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/EthicalBusinessDirectoryPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/EthicalBusinessDirectoryPage").default)}
               </ProtectedRoute>
             }
           />
@@ -181,9 +167,7 @@ function ThemedAppContent() {
             path="/disease-management"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/DiseaseManagementPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/DiseaseManagementPage").default)}
               </ProtectedRoute>
             }
           />
@@ -191,9 +175,7 @@ function ThemedAppContent() {
             path="/teleconsultation"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/TeleconsultationPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/TeleconsultationPage").default)}
               </ProtectedRoute>
             }
           />
@@ -201,9 +183,7 @@ function ThemedAppContent() {
             path="/forums"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/ForumsPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/ForumsPage").default)}
               </ProtectedRoute>
             }
           />
@@ -211,9 +191,7 @@ function ThemedAppContent() {
             path="/resources"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/LocalResourcesPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/LocalResourcesPage").default)}
               </ProtectedRoute>
             }
           />
@@ -221,9 +199,7 @@ function ThemedAppContent() {
             path="/education"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/EducationHubPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/EducationHubPage").default)}
               </ProtectedRoute>
             }
           />
@@ -231,9 +207,7 @@ function ThemedAppContent() {
             path="/ai-chat"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/AiChatPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/AiChatPage").default)}
               </ProtectedRoute>
             }
           />
@@ -241,9 +215,7 @@ function ThemedAppContent() {
             path="/profile"
             element={
               <ProtectedRoute>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  {React.createElement(require("./pages/ProfileSettingsPage").default)}
-                </React.Suspense>
+                {React.createElement(require("./pages/ProfileSettingsPage").default)}
               </ProtectedRoute>
             }
           />

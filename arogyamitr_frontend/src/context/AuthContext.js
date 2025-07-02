@@ -4,7 +4,7 @@ import React, { createContext, useState, useEffect, useContext } from "react";
  * AuthContext provides authentication status and user data,
  * as well as login, logout, signup, and OAuth sign-in actions.
  */
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 /**
  * PUBLIC_INTERFACE
