@@ -18,14 +18,47 @@ In the project directory, you can run:
 Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm test`
+---
 
-Launches the test runner in interactive watch mode.
+## 🧪 Testing: How to Run and Extend Tests
 
-### `npm run build`
+The frontend uses **Jest** (with `@testing-library/react`) for component, page, navigation, hook, and integration testing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### To run all frontend tests:
+
+```sh
+npm test
+```
+or non-interactive CI mode:
+```sh
+CI=true npm test
+```
+
+- Existing and all new test files should be placed alongside components/pages under `src/` (`*.test.js`)
+- See `src/App.test.js` for a sample
+- Test setup: see `src/setupTests.js` (Jest matchers & config)
+
+### How to Add New Tests
+
+- Create files named `*.test.js` for each page, component, or integration.
+- Use `@testing-library/react`'s `render`, `screen`, and `fireEvent` utilities.
+- Test coverage is required for:
+    - Page rendering (e.g., Dashboard, Auth, Navigation)
+    - Authentication flow (`LoginPage`, `SignupPage`)
+    - Navigation/route guards (`ProtectedRoute`)
+    - API integration hooks (e.g., `useApi`)
+
+Example basic test for a page:
+```js
+import { render, screen } from "@testing-library/react";
+import DashboardPage from "./pages/DashboardPage";
+test("renders dashboard", () => {
+  render(<DashboardPage />);
+  expect(screen.getByText(/welcome to arogya/i)).toBeInTheDocument();
+});
+```
+
+---
 
 ## Customization
 
