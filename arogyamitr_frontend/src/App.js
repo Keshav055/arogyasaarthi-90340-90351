@@ -88,10 +88,37 @@ function ThemedAppContent() {
         className="theme-toggle"
         onClick={() => setTheme(t => (t === "light" ? "dark" : "light"))}
         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-        style={{ position: "fixed", top: 17, right: 16, zIndex: 100 }}
+        style={{
+          position: "fixed",
+          bottom: "22px",
+          right: "22px",
+          zIndex: 9999,
+          background: "rgba(255,255,255,0.94)",
+          color: "#2C3E50",
+          border: "1.3px solid #99BD8B",
+          borderRadius: "2.3rem",
+          padding: "0.66em 1.2em",
+          fontWeight: 700,
+          fontFamily: "'Poppins','Segoe UI',sans-serif",
+          fontSize: "1.11rem",
+          boxShadow: "0 2px 13px 0 #b5ecc438, 0 1.5px 2.5px #99BD8B15",
+          outline: "none",
+          cursor: "pointer",
+          transition: "background 0.14s, color 0.13s, border 0.16s"
+        }}
         tabIndex={0}
       >
-        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+        {theme === "light"
+          ? (
+              <span style={{display:"flex",alignItems:"center",gap:7}}>
+                <span aria-hidden="true" role="img" style={{fontSize:"1.22em"}}>🌙</span> <span style={{fontWeight:600}}>Dark</span>
+              </span>
+            )
+          : (
+              <span style={{display:"flex",alignItems:"center",gap:7}}>
+                <span aria-hidden="true" role="img" style={{fontSize:"1.13em"}}>☀️</span> <span style={{fontWeight:600}}>Light</span>
+              </span>
+            )}
       </button>
       <MainLayout>
         <Routes>

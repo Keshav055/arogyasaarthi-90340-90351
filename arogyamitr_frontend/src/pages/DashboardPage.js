@@ -27,7 +27,7 @@ function DashboardPage() {
   useEffect(() => {
     document.title = "Dashboard - ArogyaMitr";
     if (unlocked.length > 0) setCelebrate(true);
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [unlocked.length]);
 
   // Load personalized tile order from localStorage if available
@@ -63,10 +63,49 @@ function DashboardPage() {
   }, [dashboardTiles]);
 
   return (
-    <div className="dashboard-page">
-      <h1>Welcome, {user?.name || "ArogyaMitr User"}!</h1>
-      <section style={{ margin: "1.2em 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
+    <div
+      className="dashboard-page"
+      style={{
+        maxWidth: 1100,
+        margin: "0 auto",
+        padding: "0 1.2rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+        minHeight: "calc(100vh - 64px)",
+      }}
+    >
+      <h1
+        style={{
+          fontFamily: '"Helvetica Neue", Arial, sans-serif',
+          fontWeight: 800,
+          color: "#152310",
+          fontSize: "2.17rem",
+          letterSpacing: "-0.02em",
+          marginTop: 32,
+          alignSelf: "center",
+          textAlign: "center",
+        }}
+      >
+        Welcome, {user?.name || "ArogyaMitr User"}!
+      </h1>
+      <section
+        style={{
+          margin: "1.2em 0",
+          alignSelf: "center",
+          width: "100%",
+          maxWidth: 720,
+          background: "#DBF6E1",
+          borderRadius: "14px",
+          border: "1.5px solid #8DC89B",
+          padding: "2rem 1.8rem",
+          boxShadow: "0 3px 18px 0 rgba(140,200,155,0.08)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "1em", flexWrap: "wrap", justifyContent: "center" }}>
           <span role="img" aria-label="flame" style={{ fontSize: "2em" }}>🔥</span>
           <b>Daily Streak:</b> <span>{streak.daily} days</span>
           <span role="img" aria-label="trophy" style={{ fontSize: "2em" }}>🏆</span>
@@ -75,7 +114,19 @@ function DashboardPage() {
         <BadgeDisplay badges={unlocked} animate />
       </section>
       {celebrate && <ProgressCelebrate show={celebrate} message={`Congrats! ${unlocked[unlocked.length-1]?.name ?? ""} 🚀`} onDone={() => setCelebrate(false)} />}
-      <div className="dashboard-tiles" style={{ marginBottom: 16 }}>
+      <div
+        className="dashboard-tiles"
+        style={{
+          marginBottom: 16,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          flexWrap: "wrap",
+          gap: 20
+        }}
+      >
         <DragAndDropSortable
           items={dashboardTiles}
           setItems={setDashboardTiles}
