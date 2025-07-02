@@ -36,12 +36,19 @@ function App() {
 // PUBLIC_INTERFACE
 function ThemedAppContent() {
   const { isAuthenticated, logout } = useAuth();
-  const [theme, setTheme] = React.useState("light");
+  // Universal, persistent theme state
+  const getInitialTheme = () => {
+    const saved = window.localStorage.getItem("color-theme");
+    return saved === "dark" || saved === "light" ? saved : "light";
+  };
+  const [theme, setTheme] = React.useState(getInitialTheme);
+
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("color-theme", theme);
   }, [theme]);
 
-  // Desktop: nav sits at top; for demo add theme toggle in nav bar
+  // Desktop: nav sits at top; demo: add theme toggle in nav bar
   return (
     <div className={styles.appContainer}>
       <AppNav isAuthenticated={isAuthenticated} onLogout={logout} />

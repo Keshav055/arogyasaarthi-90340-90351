@@ -10,31 +10,30 @@ import {
 export function ChartCard({ title, description, children }) {
   return (
     <div style={{
-      background: "var(--card-bg, #232c3c)",
+      background: "var(--card-bg)",
       borderRadius: "16px",
       padding: "1.5rem",
       margin: "1.2rem 0",
-      boxShadow: "0 2px 16px 0 rgba(15,18,34,0.15)",
-      border: "1.2px solid var(--border, #232b3b)",
+      boxShadow: "var(--box-shadow)",
+      border: "1.2px solid var(--border)",
       transition: "background 0.21s, color 0.15s",
     }}>
-      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--text-primary,#f2f5fd)" }}>{title}</h3>
-      {description && <div style={{ marginBottom: 12, color: "var(--text-secondary,#A6AFCF)" }}>{description}</div>}
+      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--text-primary)" }}>{title}</h3>
+      {description && <div style={{ marginBottom: 12, color: "var(--text-secondary)" }}>{description}</div>}
       <div style={{ width: "100%", height: 240 }}>{children}</div>
     </div>
   );
 }
 
-/** Modern accessible chart palette for both light/dark */
+/** Modern accessible chart palette for both light/dark; always uses theme variables for backgrounds/lines for contrast. */
 export const chartPalette = [
-  "var(--primary,#7ec583)",      // green
-  "var(--accent,#3451b2)",       // blue
-  "var(--secondary,#FFC857)",    // gold
-  "var(--accent-alt,#2296ce)",   // highlight blue
-  "#45d885",                     // positive green
-  "#e66a86",                     // pink/danger
-  "#ffdf8f",                     // soft yellow
-  "#25325c"                      // muted dark blue-gray
+  "var(--primary)",        // Theme green
+  "var(--accent)",         // Theme blue
+  "var(--secondary)",      // Theme gold
+  "var(--accent-alt)",     // Alt accent
+  "var(--success)",        // Success green
+  "var(--danger)",         // Alert
+  "var(--secondary-light)","#314462" // Soft/dark for low-priority series
 ];
 
 /**
@@ -47,11 +46,11 @@ export function UserProgressChart({ data }) {
     <ChartCard title="Your Progress" description="Weekly improvement towards your wellness goal">
       <ResponsiveContainer>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-          <XAxis dataKey="name" tick={{ fill: "var(--text-primary)" }}/>
-          <YAxis domain={[0, 100]} tick={{ fill: "var(--text-primary)" }} />
-          <Tooltip />
-          <Line type="monotone" dataKey="score" stroke="#4CA65A" strokeWidth={3} dot={{ r: 5, fill: "#4CA65A" }} />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          <XAxis dataKey="name" tick={{ fill: "var(--text-primary)" }} />
+          <YAxis domain={[0,100]} tick={{ fill: "var(--text-primary)" }} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
+          <Line type="monotone" dataKey="score" stroke="var(--primary)" strokeWidth={3} dot={{ r: 5, fill: "var(--accent-alt)" }} />
         </LineChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -68,11 +67,11 @@ export function WellnessInfographic({ data }) {
     <ChartCard title="Wellness Overview" description="Your balance across core wellness areas">
       <ResponsiveContainer>
         <RadarChart data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="aspect" tick={{ fill: "var(--text-primary)" }}/>
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tickCount={6} />
-          <Tooltip />
-          <Radar dataKey="value" stroke="#38B3A7" fill="#38B3A7" fillOpacity={0.4} />
+          <PolarGrid stroke="var(--border)" />
+          <PolarAngleAxis dataKey="aspect" tick={{ fill: "var(--text-primary)" }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={ { fill: "var(--text-soft)" }} tickCount={6} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
+          <Radar dataKey="value" stroke="var(--accent-alt)" fill="var(--accent-alt)" fillOpacity={0.35} />
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -89,11 +88,11 @@ export function HealthTipsBar({ data }) {
     <ChartCard title="Trending Health Tips" description="Most followed wellness actions this month">
       <ResponsiveContainer>
         <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="tip" tick={{ fill: "var(--text-primary)", fontSize: 11 }}/>
-          <YAxis allowDecimals={false} tick={{ fill: "var(--text-primary)" }}/>
-          <Tooltip />
-          <Bar dataKey="users" fill="#FFC857" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          <XAxis dataKey="tip" tick={{ fill: "var(--text-secondary)", fontSize: 11 }} />
+          <YAxis allowDecimals={false} tick={{ fill: "var(--text-secondary)" }} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }}/>
+          <Bar dataKey="users" fill="var(--secondary)" />
         </BarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -120,22 +119,25 @@ export function HydrationPie({ value, goal }) {
             nameKey="name"
             innerRadius={55}
             outerRadius={95}
-            fill="#4CA65A"
+            fill="var(--primary)"
             label={({ name }) => name}
           >
             {data.map((entry, idx) =>
-              <Cell key={`cell-${idx}`} fill={idx === 0 ? "#4CA65A" : "#EFEFEF"} />
+              <Cell
+                key={`cell-${idx}`}
+                fill={idx === 0 ? "var(--primary)" : "var(--bg-secondary)"}
+              />
             )}
           </Pie>
-          <Tooltip />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
           <Legend />
         </PieChart>
       </ResponsiveContainer>
       <div style={{
-        marginTop: "-40px", 
-        textAlign: "center", 
-        color: "#4CA65A", 
-        fontWeight: "bold", 
+        marginTop: "-40px",
+        textAlign: "center",
+        color: "var(--primary)",
+        fontWeight: "bold",
         fontSize: "1.5rem"
       }}>
         {percent}%
@@ -154,13 +156,26 @@ export function NutrientRadar({ data }) {
     <ChartCard title="Nutrient Intake" description="Macronutrient distribution vs. recommended goals">
       <ResponsiveContainer>
         <RadarChart data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="name" />
-          <PolarRadiusAxis angle={25} domain={[0, data.reduce((a, b) => Math.max(a, b.goal), 0)]} />
-          <Radar name="Intake" dataKey="intake" stroke="#2C3E50" fill="#2C3E50" fillOpacity={0.5} />
-          <Radar name="Goal" dataKey="goal" stroke="#FFC857" fill="#FFC857" fillOpacity={0.25} />
+          <PolarGrid stroke="var(--border)" />
+          <PolarAngleAxis dataKey="name" tick={{ fill: "var(--text-primary)" }}/>
+          <PolarRadiusAxis angle={25}
+            domain={[0, data.reduce((a, b) => Math.max(a, b.goal), 0)]}
+            tick={{ fill: "var(--text-soft)" }}
+          />
+          <Radar name="Intake"
+            dataKey="intake"
+            stroke="var(--primary)"
+            fill="var(--primary)"
+            fillOpacity={0.40}
+          />
+          <Radar name="Goal"
+            dataKey="goal"
+            stroke="var(--secondary)"
+            fill="var(--secondary)"
+            fillOpacity={0.23}
+          />
           <Legend />
-          <Tooltip />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>
