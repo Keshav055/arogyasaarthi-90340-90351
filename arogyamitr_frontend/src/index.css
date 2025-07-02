@@ -1,12 +1,4 @@
-:root {
-  --primary: #3451b2;
-  --primary-dark: #203272;
-  --secondary: #f04848;
-  --accent: #ffc857;
-  --bg: #f8fafc;
-  --card-bg: #fffefd;
-  --text: #202331;
-}
+/* Master index reset. All color variables and backgrounds are managed in AppTheme.module.css */
 
 body {
   margin: 0;
@@ -15,8 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--bg, #f8fafc);
-  color: var(--text, #202331);
+  background: var(--bg, #111821);
+  color: var(--text, #f2f5fd);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

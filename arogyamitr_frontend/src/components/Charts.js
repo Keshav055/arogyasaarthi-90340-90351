@@ -10,30 +10,31 @@ import {
 export function ChartCard({ title, description, children }) {
   return (
     <div style={{
-      background: "var(--bg-secondary)",
+      background: "var(--card-bg, #232c3c)",
       borderRadius: "16px",
       padding: "1.5rem",
       margin: "1.2rem 0",
-      boxShadow: "0 2px 8px 0 rgba(80,100,120,0.04)",
-      border: "1px solid var(--border-color)"
+      boxShadow: "0 2px 16px 0 rgba(15,18,34,0.15)",
+      border: "1.2px solid var(--border, #232b3b)",
+      transition: "background 0.21s, color 0.15s",
     }}>
-      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--text-primary)" }}>{title}</h3>
-      {description && <div style={{ marginBottom: 12, color: "var(--text-secondary)" }}>{description}</div>}
+      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--text-primary,#f2f5fd)" }}>{title}</h3>
+      {description && <div style={{ marginBottom: 12, color: "var(--text-secondary,#A6AFCF)" }}>{description}</div>}
       <div style={{ width: "100%", height: 240 }}>{children}</div>
     </div>
   );
 }
 
-/** Premium Accessible chart colors */
+/** Modern accessible chart palette for both light/dark */
 export const chartPalette = [
-  "var(--primary,#3451b2)",
-  "var(--secondary,#f04848)",
-  "var(--accent,#ffc857)",
-  "#38B3A7",     // keep a teal for variety
-  "#e84857",     // premium danger
-  "#7ea7ff",     // light blue for dark mode
-  "#ffd266",     // accent/alt for highlights
-  "#b7bfcc"      // muted blue-gray as extra
+  "var(--primary,#7ec583)",      // green
+  "var(--accent,#3451b2)",       // blue
+  "var(--secondary,#FFC857)",    // gold
+  "var(--accent-alt,#2296ce)",   // highlight blue
+  "#45d885",                     // positive green
+  "#e66a86",                     // pink/danger
+  "#ffdf8f",                     // soft yellow
+  "#25325c"                      // muted dark blue-gray
 ];
 
 /**
