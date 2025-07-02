@@ -6,250 +6,15 @@ Attempting to bind to HOST environment variable: 0.0.0.0
 If this was unintentional, check that you haven't mistakenly set it in your shell.
 Learn more here: https://cra.link/advanced-config
 
-(node:49108) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:50788) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:49108) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:50788) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled with warnings.
 
 [eslint] 
 src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-webpack compiled with 1 warning
-Compiling...
-Compiled with warnings.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-webpack compiled with 1 warning
-Compiling...
-Compiled with warnings.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-WARNING in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 3:10:  'fetchMealPlans' is defined but never used                                                                                                                                                                                 no-unused-vars
-  Line 92:9:  The 'allRecipes' array makes the dependencies of useMemo Hook (at line 107) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-webpack compiled with 1 warning
-Compiling...
-Failed to compile.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-Syntax error: Unexpected token (1:43) (1:43)
-WARNING in [eslint] 
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-ERROR in ./src/pages/DietNutritionPage.js
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages/DietNutritionPage.js: Unexpected token (1:43)
-
-> 1 | <entire file content truncated for brevity - see previous read result for input; incorporate the same playful emoji avatar pattern for stat/card rows, main heading, and card labels as described and as done in other files.>
-    |                                            ^
-  2 |
-    at constructor (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:360:19)
-    at FlowParserMixin.raise (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3327:19)
-    at FlowParserMixin.unexpected (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3347:16)
-    at FlowParserMixin.jsxParseIdentifier (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6742:12)
-    at FlowParserMixin.jsxParseNamespacedName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6749:23)
-    at FlowParserMixin.jsxParseAttribute (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6825:22)
-    at FlowParserMixin.jsxParseOpeningElementAfterName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6840:28)
-    at FlowParserMixin.jsxParseOpeningElementAfterName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6292:18)
-    at FlowParserMixin.jsxParseOpeningElementAt (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6835:17)
-    at FlowParserMixin.jsxParseElementAt (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6859:33)
-    at FlowParserMixin.jsxParseElement (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6922:17)
-    at FlowParserMixin.parseExprAtom (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6932:19)
-    at FlowParserMixin.parseExprSubscripts (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10758:23)
-    at FlowParserMixin.parseUpdate (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10743:21)
-    at FlowParserMixin.parseMaybeUnary (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10723:23)
-    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10576:61)
-    at FlowParserMixin.parseExprOps (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10581:23)
-    at FlowParserMixin.parseMaybeConditional (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10558:23)
-    at FlowParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10521:21)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5722:39
-    at FlowParserMixin.tryParse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3665:20)
-    at FlowParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5722:18)
-    at FlowParserMixin.parseExpressionBase (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10475:23)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10471:39
-    at FlowParserMixin.allowInAnd (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12095:16)
-    at FlowParserMixin.parseExpression (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10471:17)
-    at FlowParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12539:23)
-    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12406:17)
-    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5140:24)
-    at FlowParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12383:17)
-    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12960:36)
-    at FlowParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12953:10)
-    at FlowParserMixin.parseProgram (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12280:10)
-    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12270:25)
-    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5909:28)
-    at FlowParserMixin.parse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:14120:10)
-    at parse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:14154:38)
-    at parser (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:261:32)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:273:13
-    at async.call.result.err.err (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:223:11)
-
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 1:43:  Parsing error: Unexpected token (1:43)
-
-webpack compiled with 2 errors and 1 warning
-Compiling...
-Failed to compile.
-
-[eslint] 
-src/pages/DietNutritionPage.js
-Syntax error: Unexpected token (1:43) (1:43)
-WARNING in [eslint] 
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-ERROR in ./src/pages/DietNutritionPage.js
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/src/pages/DietNutritionPage.js: Unexpected token (1:43)
-
-> 1 | <entire file content truncated for brevity - see previous read result for input; incorporate the same playful emoji avatar pattern for stat/card rows, main heading, and card labels as described and as done in other files.>
-    |                                            ^
-  2 |
-    at constructor (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:360:19)
-    at FlowParserMixin.raise (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3327:19)
-    at FlowParserMixin.unexpected (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3347:16)
-    at FlowParserMixin.jsxParseIdentifier (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6742:12)
-    at FlowParserMixin.jsxParseNamespacedName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6749:23)
-    at FlowParserMixin.jsxParseAttribute (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6825:22)
-    at FlowParserMixin.jsxParseOpeningElementAfterName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6840:28)
-    at FlowParserMixin.jsxParseOpeningElementAfterName (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6292:18)
-    at FlowParserMixin.jsxParseOpeningElementAt (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6835:17)
-    at FlowParserMixin.jsxParseElementAt (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6859:33)
-    at FlowParserMixin.jsxParseElement (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6922:17)
-    at FlowParserMixin.parseExprAtom (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:6932:19)
-    at FlowParserMixin.parseExprSubscripts (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10758:23)
-    at FlowParserMixin.parseUpdate (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10743:21)
-    at FlowParserMixin.parseMaybeUnary (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10723:23)
-    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10576:61)
-    at FlowParserMixin.parseExprOps (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10581:23)
-    at FlowParserMixin.parseMaybeConditional (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10558:23)
-    at FlowParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10521:21)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5722:39
-    at FlowParserMixin.tryParse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:3665:20)
-    at FlowParserMixin.parseMaybeAssign (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5722:18)
-    at FlowParserMixin.parseExpressionBase (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10475:23)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10471:39
-    at FlowParserMixin.allowInAnd (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12095:16)
-    at FlowParserMixin.parseExpression (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:10471:17)
-    at FlowParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12539:23)
-    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12406:17)
-    at FlowParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5140:24)
-    at FlowParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12383:17)
-    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12960:36)
-    at FlowParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12953:10)
-    at FlowParserMixin.parseProgram (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12280:10)
-    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:12270:25)
-    at FlowParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:5909:28)
-    at FlowParserMixin.parse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:14120:10)
-    at parse (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/parser/lib/index.js:14154:38)
-    at parser (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/@babel/core/lib/transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:261:32)
-    at /home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:273:13
-    at async.call.result.err.err (/home/kavia/workspace/code-generation/arogyasaarthi-90340-90351/arogyamitr_frontend/node_modules/gensync/index.js:223:11)
-
-ERROR in [eslint] 
-src/pages/DietNutritionPage.js
-  Line 1:43:  Parsing error: Unexpected token (1:43)
-
-webpack compiled with 2 errors and 1 warning
-Compiling...
-Compiled with warnings.
-
-[eslint] 
-src/pages/DietNutritionPage.js
   Line 3:10:   'fetchMealPlans' is defined but never used                                                                                                                                                                                no-unused-vars
   Line 71:10:  'addModalOpen' is assigned a value but never used                                                                                                                                                                         no-unused-vars
   Line 71:24:  'setAddModalOpen' is assigned a value but never used                                                                                                                                                                      no-unused-vars
@@ -259,12 +24,6 @@ src/pages/DietNutritionPage.js
   Line 79:9:   The 'allRecipes' array makes the dependencies of useMemo Hook (at line 94) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
   Line 84:9:   'filteredRecipes' is assigned a value but never used                                                                                                                                                                      no-unused-vars
   Line 96:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                               no-unused-vars
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
 
 Search for the keywords to learn more about each warning.
 To ignore, add // eslint-disable-next-line to the line before.
@@ -280,11 +39,5 @@ src/pages/DietNutritionPage.js
   Line 79:9:   The 'allRecipes' array makes the dependencies of useMemo Hook (at line 94) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'allRecipes' in its own useMemo() Hook  react-hooks/exhaustive-deps
   Line 84:9:   'filteredRecipes' is assigned a value but never used                                                                                                                                                                      no-unused-vars
   Line 96:12:  'handleAddRecipe' is defined but never used                                                                                                                                                                               no-unused-vars
-
-src/pages/FitnessPage.js
-  Line 58:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
-
-src/pages/MindfulnessPage.js
-  Line 59:9:  'isFirstLog' is assigned a value but never used  no-unused-vars
 
 webpack compiled with 1 warning
