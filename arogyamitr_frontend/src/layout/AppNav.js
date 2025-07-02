@@ -30,9 +30,9 @@ function AppNav({ isAuthenticated, onLogout }) {
 
   return (
     <header className={styles.headerBar}>
-      <NavLink to="/" className={styles.logo} tabIndex={0}>
+      <NavLink to="/" className={styles.logo} tabIndex={0} style={{ fontFamily: "Poppins,Segoe UI,sans-serif" }}>
         <span role="img" aria-label="ArogyaMitr heartbeat">💚</span>
-        ArogyaMitr
+        <span style={{color: "var(--primary)"}}>Arogya</span><span style={{color: "var(--secondary)"}}>Mitr</span>
       </NavLink>
 
       {/* Desktop nav */}

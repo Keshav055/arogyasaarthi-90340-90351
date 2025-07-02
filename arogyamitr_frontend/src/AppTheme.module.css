@@ -1,19 +1,69 @@
 :root {
-  --primary: #4CA65A;
-  --secondary: #2C3E50;
-  --accent: #FFC857;
-  --bg: #F6FFF9;
-  --bg-dark: #ECF2ED;
-  --card-bg: #fff;
-  --header-bg: #F2FFF4;
-  --mobile-nav-bg: #2C3E50;
-  --text: #222f2a;
-  --text-alt: #4CA65A;
-  --text-soft: #45514b; 
-  --danger: #EE4266;
-  --border: #e0efeb;
-  --shadow: 0 3px 16px 0 rgba(60,90,60,0.06);
-  --radius: 13px;
+  /* Premium Material-Inspired Accessible Palette */
+  --primary: #3451b2;          /* Royal Blue */
+  --primary-dark: #203272;
+  --secondary: #f04848;        /* Deep Coral */
+  --secondary-light: #fee6e3;  /* Soft secondary BG */
+  --accent: #ffc857;           /* Gold Accent */
+  --accent-alt: #ffe398;
+  --bg: #f8fafc;               /* Soft cool white BG */
+  --bg-secondary: #f1f4f9;     /* Slightly darker neutral BG */
+  --bg-dark: #dedfea;
+  --card-bg: #fffefd;
+  --header-bg: #eaf0fa;
+  --mobile-nav-bg: #203272;
+  --text: #202331;             /* Heading/primary text (nearly black blue) */
+  --text-primary: #202331;
+  --text-secondary: #4b5472;
+  --text-soft: #7b859a; 
+  --text-inverse: #fff;
+  --danger: #e84857;
+  --success: #0fad6d;
+  --info: #38b3a7;
+  --border: #e2e4ec;
+  --border-strong: #b3bad3;
+  --box-shadow: 0 3px 14px 0 rgba(44,64,160,0.08);
+  --shadow: var(--box-shadow);
+  --radius: 15px;
+  --button-bg: var(--primary);
+  --button-text: var(--text-inverse);
+}
+
+[data-theme="dark"] {
+  --primary: #7ea7ff;
+  --primary-dark: #3451b2;
+  --secondary: #ef7f7f;
+  --secondary-light: #232c44;
+  --accent: #ffd266;
+  --accent-alt: #ffe398;
+  --bg: #1b2236;
+  --bg-secondary: #25325c;
+  --bg-dark: #192042;
+  --card-bg: #202946;
+  --header-bg: #232c44;
+  --mobile-nav-bg: #232c44;
+  --text: #eaf0fa;
+  --text-primary: #f9fcff;
+  --text-secondary: #bbc9e2;
+  --text-soft: #7991bd; 
+  --text-inverse: #162140;
+  --danger: #ff7d8c;
+  --success: #52e2b3;
+  --info: #56e1f8;
+  --border: #2d395d;
+  --border-strong: #3a4569;
+  --box-shadow: 0 3px 20px 0 rgba(36, 76, 147, 0.12);
+  --shadow: var(--box-shadow);
+  --button-bg: var(--primary);
+  --button-text: var(--text-inverse);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Fira Sans', Arial, sans-serif;
+  min-height: 100vh;
 }
 
 body {

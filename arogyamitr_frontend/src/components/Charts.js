@@ -24,8 +24,17 @@ export function ChartCard({ title, description, children }) {
   );
 }
 
-// --- Chart color palette pulls from app theme or fallback ---
-export const chartPalette = ["#4CA65A", "#2C3E50", "#FFC857", "#38B3A7", "#E87A41", "#8D72E1", "#EE4266", "#247BA0"];
+/** Premium Accessible chart colors */
+export const chartPalette = [
+  "var(--primary,#3451b2)",
+  "var(--secondary,#f04848)",
+  "var(--accent,#ffc857)",
+  "#38B3A7",     // keep a teal for variety
+  "#e84857",     // premium danger
+  "#7ea7ff",     // light blue for dark mode
+  "#ffd266",     // accent/alt for highlights
+  "#b7bfcc"      // muted blue-gray as extra
+];
 
 /**
  * PUBLIC_INTERFACE
