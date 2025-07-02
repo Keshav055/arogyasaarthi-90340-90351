@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { WellnessInfographic, ChartCard } from "../components/Charts";
+import styles from "../MicroAnimations.module.css";
 
 // Core wellness focus modules configuration
 const MODULES = [
@@ -100,7 +101,7 @@ function WellnessPathPage() {
   // Progress timeline visualization (static for demo)
   function PathProgressBar({ progress }) {
     return (
-      <div style={{
+      <div className={`${styles.infoPanelEntry}`} style={{
         background: "#f5fdf9",
         borderRadius: 10,
         padding: "14px 18px 10px 18px",
@@ -116,6 +117,7 @@ function WellnessPathPage() {
             Your overall progress along the wellness path
           </div>
           <div
+            className={styles.progressBarAnimated}
             style={{
               marginTop: 8,
               background: "#e0efeb",
@@ -158,7 +160,7 @@ function WellnessPathPage() {
       navigate(module.route);
     };
     return (
-      <div className="wp-module-card"
+      <div className={`wp-module-card ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
         style={{
           background: focusActive ? "#f2fff4" : "var(--card-bg, #fff)",
           border: focusActive ? "2.6px solid var(--primary,#4CA65A)" : "1.5px solid #e0efeb",
@@ -207,11 +209,12 @@ function WellnessPathPage() {
           }}>
             {status.completed ? "🎉 Goal completed!" : `Today's Goal: ${status.goal}`}
           </div>
-          <div style={{
-            marginTop: 6, marginBottom: 2,
-            display: "flex", alignItems: "center",
-            gap: 8
-          }}>
+          <div className={styles.progressBarAnimated}
+            style={{
+              marginTop: 6, marginBottom: 2,
+              display: "flex", alignItems: "center",
+              gap: 8
+            }}>
             <div style={{
               height: 17,
               width: 97,
@@ -236,7 +239,7 @@ function WellnessPathPage() {
         </div>
         {/* Next Action/CTA */}
         <button
-          className="btn"
+          className={`btn ${styles.buttonAnim}`}
           style={{
             marginTop: 10,
             background: module.color,
@@ -258,6 +261,7 @@ function WellnessPathPage() {
         </button>
         {/* Toggle focus area */}
         <button
+          className={styles.buttonAnim}
           style={{
             position: "absolute",
             top: 14,
@@ -283,8 +287,8 @@ function WellnessPathPage() {
 
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 700 }}>
-      <h2>Wellness Path</h2>
-      <div style={{ color: "var(--text-secondary)", marginBottom: 7 }}>
+      <h2 className={styles.infoPanelEntry}>Wellness Path</h2>
+      <div className={styles.infoPanelEntry} style={{ color: "var(--text-secondary)", marginBottom: 7 }}>
         Personalize your journey – select daily focus areas, visualize progress, and access health modules below.
       </div>
       {/* Focus area selector (toggle) */}
@@ -299,7 +303,7 @@ function WellnessPathPage() {
             key={fa.key}
             onClick={() => setFocus(fa.key)}
             aria-pressed={focus === fa.key}
-            className="btn"
+            className={`btn ${styles.buttonAnim}`}
             style={{
               background: focus === fa.key ? "var(--primary)" : "var(--bg-dark)",
               color: focus === fa.key ? "#fff" : "#247BA0",
@@ -343,7 +347,9 @@ function WellnessPathPage() {
         ))}
       </div>
       {/* Wellness overview radar and goal suggestions */}
-      <WellnessInfographic data={demoWellness} />
+      <div className={styles.chartEntry}>
+        <WellnessInfographic data={demoWellness} />
+      </div>
       <ChartCard title="Goal Suggestions"
         description="Personalized focus goals to elevate your wellness this week.">
         <ul style={{ fontSize: "1.07em", marginBottom: 0 }}>
@@ -362,7 +368,7 @@ function WellnessPathPage() {
         </ul>
       </ChartCard>
       {/* Onboarding/walkthrough wizard placeholder */}
-      <div style={{
+      <div className={styles.infoPanelEntry} style={{
         marginTop: "2.3rem",
         background: "#F1FFE2",
         borderRadius: 13,

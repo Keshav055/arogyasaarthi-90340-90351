@@ -16,7 +16,7 @@ function NotificationPanel({ notifications = [] }) {
         {notifications.map((notif, idx) => (
           <li
             key={idx}
-            className={styles.microCard}
+            className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
             style={{
               background: notif.seen ? "#F8FFF7" : "#F1FFEB",
               padding: "8px 13px",
@@ -69,7 +69,7 @@ function QuickCheckin({ onSubmit }) {
           required
           onChange={e => setMood(e.target.value)}
           style={{ padding: "5px 9px", borderRadius: 7, fontSize: "1em" }}
-          className={styles.microCard}
+          className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
         >
           <option value="">Select</option>
           <option value="😊">😊 Good</option>
@@ -84,7 +84,7 @@ function QuickCheckin({ onSubmit }) {
           required
           onChange={e => setEnergy(e.target.value)}
           style={{ padding: "5px 9px", borderRadius: 7, fontSize: "1em" }}
-          className={styles.microCard}
+          className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
         >
           <option value="">Select</option>
           <option value="High">High</option>
@@ -92,7 +92,7 @@ function QuickCheckin({ onSubmit }) {
           <option value="Low">Low</option>
         </select>
         <button
-          className={`btn ${styles.microBtn}`}
+          className={`btn ${styles.buttonAnim}`}
           type="submit"
           style={{ borderRadius: 8, padding: "6px 16px" }}
           disabled={submitted}
@@ -101,7 +101,7 @@ function QuickCheckin({ onSubmit }) {
         </button>
       </form>
       {submitted && (
-        <div className={styles.microFadeIn} style={{ color: "#38B3A7", marginTop: 9 }}>
+        <div className={styles.infoPanelEntry} style={{ color: "#38B3A7", marginTop: 9 }}>
           Thank you for checking in!
         </div>
       )}
@@ -117,7 +117,7 @@ function EventsCard({ events = [] }) {
         {events.map((ev, idx) => (
           <li
             key={idx}
-            className={styles.microPopIn}
+            className={`${styles.microPopIn} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
             style={{
               display: "flex",
               alignItems: "center",
@@ -158,7 +158,7 @@ function CustomTilesPanel({ tiles, onOrderChange }) {
         {tiles.map((tile, idx) => (
           <div
             key={idx}
-            className={`${styles.microCard} ${styles.microPopIn}`}
+            className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
             style={{
               background: "#F6FFF9",
               border: "1px solid #e0efeb",
@@ -195,7 +195,7 @@ function ActivityLogPanel({ activities }) {
           {activities.map((act, i) => (
             <li
               key={i}
-              className={styles.microCard}
+              className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover} ${styles.cardTap}`}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -227,7 +227,7 @@ function AIInsightsPanel({ highlights }) {
           {highlights.map((h, idx) => (
             <li
               key={idx}
-              className={styles.microInfoPanelEntry}
+              className={`${styles.microInfoPanelEntry} ${styles.animatedCardEntry}`}
               style={{
                 background: "#FAFAFF",
                 borderRadius: 9,
@@ -322,11 +322,11 @@ function DashboardPage() {
         <strong>Hello, {userName}</strong>
       </div>
       <div>
-        <button className={`btn ${styles.microBtn}`} onClick={logout}>Logout</button>
+        <button className={`btn ${styles.buttonAnim}`} onClick={logout}>Logout</button>
       </div>
       <div style={{ margin: "1.5rem 0" }}>
         <span
-          className={styles.microFadeIn}
+          className={styles.infoPanelEntry}
           style={{
             background: "var(--bg-secondary)",
             color: "var(--text-primary)",
@@ -362,17 +362,17 @@ function DashboardPage() {
       <ActivityLogPanel activities={data?.activityLog || activityLog} />
 
       {/* Progress Chart */}
-      <div className={styles.microCard}>
+      <div className={`${styles.microCard} ${styles.chartEntry}`}>
         <UserProgressChart data={data?.progress || demoProgress} />
       </div>
 
       {/* Wellness Radar */}
-      <div className={styles.microCard}>
+      <div className={`${styles.microCard} ${styles.chartEntry}`}>
         <WellnessInfographic data={data?.wellness || demoWellness} />
       </div>
 
       {/* Trending Health Tips Bar */}
-      <div className={styles.microCard}>
+      <div className={`${styles.microCard} ${styles.animatedCardEntry} ${styles.cardHover}`}>
         <HealthTipsBar data={data?.healthTips || demoTips} />
       </div>
     </div>
