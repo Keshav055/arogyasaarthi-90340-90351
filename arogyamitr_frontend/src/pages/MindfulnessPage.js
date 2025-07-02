@@ -8,6 +8,7 @@ import anim from "../MicroAnimations.module.css";
 /**
  * PUBLIC_INTERFACE
  * MindfulnessPage with mood chart, journaling log, and UI to add new log entries.
+ * Now features refined instant playful feedback for achievements: first log, streak, or regular entry.
  */
 function MindfulnessPage() {
   const { data, loading, error, refetch } = useMindfulnessDashboard();
@@ -29,31 +30,81 @@ function MindfulnessPage() {
   ];
   const [log, setLog] = useState([]);
   const [newLog, setNewLog] = useState({ date: "", mood: "", notes: "" });
-  const [showCelebrate, setShowCelebrate] = useState(false);
+  // Achievement feedback state
+  // showCelebrate is {visible: bool, type: 'first_log' | 'streak' | 'generic' }
+  const [showCelebrate, setShowCelebrate] = useState({ visible: false, type: "" });
 
   const moodData = data?.moodProgress || demoMood;
   const journal = data?.journal || (log.length > 0 ? log : demoJournal);
 
+  // Returns true if this is user's first log ever in this session
+  const isFirstLog = () =>
+    (log.length === 0) ||
+    // If it's a demo/fallback log, only count user logs after first added
+    (log.length === 1 && JSON.stringify(log[0]) !== JSON.stringify(newLog));
+
+  // Detects streak (demo: 3+ logs in a row on unique dates; could improve with session/user data)
+  const hasStreak = () => {
+    if (log.length < 3) return false;
+    // Look for logs on 3 unique consecutive days (simple streak logic)
+    const uniqueDates = [...new Set(log.map(entry => entry.date))];
+    return uniqueDates.length >= 3;
+  };
+
+  /**
+   * Handles mood/journal log. Triggers instant feedback for first log, streak, or generic log.
+   */
   function handleAddLog(e) {
     e.preventDefault();
     if (!newLog.date || !newLog.mood) return;
-    setLog(lgs => [...lgs, { ...newLog }]);
+    const updatedLog = [...log, { ...newLog }];
+    setLog(updatedLog);
     setNewLog({ date: "", mood: "", notes: "" });
-    setShowCelebrate(true);
+
+    // Achievement celebration logic:
+    if (log.length === 0) {
+      setShowCelebrate({ visible: true, type: "first_log" });
+    } else if (hasStreak()) {
+      setShowCelebrate({ visible: true, type: "streak" });
+    } else {
+      setShowCelebrate({ visible: true, type: "generic" });
+    }
   }
+
+  // Customized celebration/badge content
+  const celebrateProps = {
+    first_log: {
+      icon: "🎉",
+      message: <>Congrats! You made your first Mindfulness log! 🥇</>
+    },
+    streak: {
+      icon: "🔥",
+      message: <>Streak on! 3+ days logged in a row! 🌈</>
+    },
+    generic: {
+      icon: "🧘‍♀️",
+      message: <>Great! Mindfulness entry logged!</>
+    }
+  };
+  const celebrationType = showCelebrate.type || "generic";
+
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <ConfettiCelebration
-        trigger={showCelebrate}
-        options={{ particleCount: 90, spread: 88, origin: { y: 0.46 } }}
-        onComplete={() => setShowCelebrate(false)}
+        trigger={showCelebrate.visible}
+        options={{
+          particleCount: celebrationType === "streak" ? 120 : 90,
+          spread: celebrationType === "streak" ? 120 : 88,
+          origin: { y: 0.46 }
+        }}
+        onComplete={() => setShowCelebrate({ visible: false, type: "" })}
       />
       <CelebratePopup
-        open={showCelebrate}
-        icon="🧘‍♀️"
-        onClose={() => setShowCelebrate(false)}
+        open={showCelebrate.visible}
+        icon={celebrateProps[celebrationType].icon}
+        onClose={() => setShowCelebrate({ visible: false, type: "" })}
       >
-        Yay! You started your streak! 🌈
+        {celebrateProps[celebrationType].message}
       </CelebratePopup>
       <h2>Mindfulness</h2>
       <div style={{ marginBottom: 16 }}>

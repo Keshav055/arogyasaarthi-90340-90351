@@ -7,7 +7,7 @@ import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
- * FitnessPage showing stats, dynamic chart, interactive exercise log, and streak celebration.
+ * FitnessPage showing stats, dynamic chart, interactive exercise log, and now multi-achievement celebration logic.
  */
 function FitnessPage() {
   const { data, loading, error, refetch } = useFitnessDashboard();
@@ -30,31 +30,75 @@ function FitnessPage() {
   ];
   const [log, setLog] = useState([]);
   const [newWorkout, setNewWorkout] = useState({ date: "", type: "", duration: "", steps: "", intensity: "" });
-  const [showCelebrate, setShowCelebrate] = useState(false);
+  // More expressive achievement feedback state
+  // {visible, type: 'first_log' | 'streak' | 'generic'}
+  const [showCelebrate, setShowCelebrate] = useState({ visible: false, type: "" });
 
   const workouts = data?.recentWorkouts || (log.length > 0 ? log : demoWorkouts);
 
+  // Returns true if there's only one log after add (first log ever)
+  const isFirstLog = () => log.length === 0;
+
+  // Demo streak logic: 3+ workout days (unique dates) = streak
+  const hasStreak = () => {
+    if (log.length < 3) return false;
+    const uniqueDates = [...new Set(log.map(w => w.date))];
+    return uniqueDates.length >= 3;
+  };
+
+  /**
+   * Handles adding workout logs, triggers correct achievement feedback.
+   */
   function handleAddWorkout(e) {
     e.preventDefault();
     if (!newWorkout.date || !newWorkout.type) return;
-    setLog(l => [...l, { ...newWorkout }]);
+    const updatedLog = [...log, { ...newWorkout }];
+    setLog(updatedLog);
     setNewWorkout({ date: "", type: "", duration: "", steps: "", intensity: "" });
-    setShowCelebrate(true);
+
+    if (log.length === 0) {
+      setShowCelebrate({ visible: true, type: "first_log" });
+    } else if (hasStreak()) {
+      setShowCelebrate({ visible: true, type: "streak" });
+    } else {
+      setShowCelebrate({ visible: true, type: "generic" });
+    }
   }
+
+  // Celebration popup props per event type
+  const celebrateProps = {
+    first_log: {
+      icon: "🏅",
+      message: <>Congrats! First workout logged! 🌟</>
+    },
+    streak: {
+      icon: "🔥",
+      message: <>Streak on! 3 days in a row! 🏆</>
+    },
+    generic: {
+      icon: "🏃‍♂️",
+      message: <>Activity logged – keep moving!</>
+    }
+  };
+  const celebrationType = showCelebrate.type || "generic";
 
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <ConfettiCelebration
-        trigger={showCelebrate}
-        options={{ colors: ["#4CA65A", "#FFC857", "#2C3E50"], particleCount: 60, spread: 80 }}
-        onComplete={() => setShowCelebrate(false)}
+        trigger={showCelebrate.visible}
+        options={{
+          colors: celebrationType === "streak" ? ["#FF9600", "#28d15a", "#E90021"] : ["#4CA65A", "#FFC857", "#2C3E50"],
+          particleCount: celebrationType === "streak" ? 88 : 60,
+          spread: celebrationType === "streak" ? 110 : 80
+        }}
+        onComplete={() => setShowCelebrate({ visible: false, type: "" })}
       />
       <CelebratePopup
-        open={showCelebrate}
-        icon="🏃‍♂️"
-        onClose={() => setShowCelebrate(false)}
+        open={showCelebrate.visible}
+        icon={celebrateProps[celebrationType].icon}
+        onClose={() => setShowCelebrate({ visible: false, type: "" })}
       >
-        Fitness Streak — Great job!
+        {celebrateProps[celebrationType].message}
       </CelebratePopup>
       <h2>Fitness</h2>
       <div style={{ marginBottom: 16 }}>

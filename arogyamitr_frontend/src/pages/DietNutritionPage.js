@@ -67,8 +67,9 @@ function DietNutritionPage() {
   const [searchText, setSearchText] = useState("");
   const [regionFilter, setRegionFilter] = useState("");
   const [userRecipes, setUserRecipes] = useState([]);
-  const [mealLogged, setMealLogged] = useState(false);
-  const [showCelebrate, setShowCelebrate] = useState(false);
+  const [mealLogs, setMealLogs] = useState([]); // tracks unique logs for first-log celebration
+  // showCelebrate: {visible, type}
+  const [showCelebrate, setShowCelebrate] = useState({ visible: false, type: "" });
 
   const allRecipes = [
     ...INDIAN_REGIONAL_RECIPES,
@@ -91,11 +92,28 @@ function DietNutritionPage() {
     setUserRecipes((old) => [...old, newRecipe]);
   }
 
-  // Mock meal log/celebration for playful engagement
+  // Enhanced: Meal log achievement detection (first log, streak demo, generic)
   function handleLogMeal() {
-    setMealLogged(true);
-    setShowCelebrate(true);
+    const updatedMealLogs = [...mealLogs, { date: new Date().toISOString().split("T")[0] }];
+    setMealLogs(updatedMealLogs);
+    if (mealLogs.length === 0) {
+      setShowCelebrate({ visible: true, type: "first_log" });
+    } else if (updatedMealLogs.length >= 3) {
+      setShowCelebrate({ visible: true, type: "streak" });
+    } else {
+      setShowCelebrate({ visible: true, type: "generic" });
+    }
   }
+
+  // Meal log disables button after log (demo session)
+  const mealLogged = mealLogs.length > 0;
+
+  const celebrateProps = {
+    first_log: { icon: "🍚", message: <>First healthy meal logged! 🥇</> },
+    streak: { icon: "🌟", message: <>Meal log streak! Consistent nutrition! 🎉</> },
+    generic: { icon: "🥗", message: <>Healthy Choice! +1 wellness point 🌱</> },
+  };
+  const celebrationType = showCelebrate.type || "generic";
 
   const mealPlan = [
     {
@@ -124,16 +142,20 @@ function DietNutritionPage() {
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 700 }}>
       <ConfettiCelebration
-        trigger={showCelebrate}
-        options={{ colors: ["#4CA65A", "#FFC857", "#2C3E50"], particleCount: 56, spread: 77 }}
-        onComplete={() => setShowCelebrate(false)}
+        trigger={showCelebrate.visible}
+        options={{
+          colors: celebrationType === "streak" ? ["#FFC857", "#4CA65A", "#2C3E50"] : ["#4CA65A", "#FFC857", "#2C3E50"],
+          particleCount: celebrationType === "streak" ? 85 : 56,
+          spread: celebrationType === "streak" ? 111 : 77
+        }}
+        onComplete={() => setShowCelebrate({ visible: false, type: "" })}
       />
       <CelebratePopup
-        open={showCelebrate}
-        icon="🥗"
-        onClose={() => setShowCelebrate(false)}
+        open={showCelebrate.visible}
+        icon={celebrateProps[celebrationType].icon}
+        onClose={() => setShowCelebrate({ visible: false, type: "" })}
       >
-        Healthy Choice! +1 wellness point 🌱
+        {celebrateProps[celebrationType].message}
       </CelebratePopup>
       <h2>Diet & Nutrition</h2>
       <p>
