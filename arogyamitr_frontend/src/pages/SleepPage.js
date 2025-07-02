@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChartCard, UserProgressChart } from "../components/Charts";
 import { useSleepDashboard } from "../api/sleep";
+import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
@@ -43,13 +44,23 @@ function SleepPage() {
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <h2>Sleep Optimizer</h2>
       <div style={{ marginBottom: 16 }}>
-        <button className="btn" style={{ marginRight: 10 }} onClick={refetch} disabled={loading}>{loading ? "Refreshing..." : "Refresh Data"}</button>
+        <button
+          className={anim.buttonHover}
+          style={{ marginRight: 10 }}
+          onClick={refetch}
+          disabled={loading}
+        >
+          {loading ? "Refreshing..." : "Refresh Data"}
+        </button>
         <span style={{ color: "#EE4266" }}>{error && <>Error loading: {error}</>}</span>
       </div>
-      <UserProgressChart data={sleepData} />
+      <div className={anim.cardEntryAnimate} style={{ animationDelay: ".06s" }}>
+        <UserProgressChart data={sleepData} />
+      </div>
       <ChartCard
         title="Sleep Log (Past Week)"
         description="Review your nightly sleep duration, quality, and notes. Add nightly records for trending analytics."
+        className={anim.cardEntryAnimate}
       >
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -63,7 +74,7 @@ function SleepPage() {
             </thead>
             <tbody>
               {nightRecords.map((r, idx) => (
-                <tr key={idx}>
+                <tr key={idx} className={anim.cardEntryAnimate} style={{ animationDelay: `${.06 * idx}s` }}>
                   <td>{r.date}</td>
                   <td style={{ textAlign: "center" }}>{r.hours}</td>
                   <td style={{ textAlign: "center" }}>{r.quality}</td>
@@ -113,7 +124,7 @@ function SleepPage() {
             style={{ width: 180, fontSize: "1em", padding: 6, border: "1px solid #e0efeb", borderRadius: 6 }}
             maxLength={180}
           />
-          <button className="btn" type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+          <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
             Add
           </button>
         </form>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChartCard, UserProgressChart } from "../components/Charts";
 import { useFitnessDashboard } from "../api/fitness";
+import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
@@ -25,7 +26,6 @@ function FitnessPage() {
     { date: "2024-05-03", type: "Cycling", duration: 25, steps: 0, intensity: "Moderate" },
     { date: "2024-05-04", type: "Walking", duration: 60, steps: 5500, intensity: "Low" },
   ];
-  // User can add new workout mock row (demo only, not persisted)
   const [log, setLog] = useState([]);
   const [newWorkout, setNewWorkout] = useState({ date: "", type: "", duration: "", steps: "", intensity: "" });
 
@@ -42,13 +42,23 @@ function FitnessPage() {
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <h2>Fitness</h2>
       <div style={{ marginBottom: 16 }}>
-        <button className="btn" style={{ marginRight: 10 }} onClick={refetch} disabled={loading}>{loading ? "Refreshing..." : "Refresh Data"}</button>
+        <button
+          className={anim.buttonHover}
+          style={{ marginRight: 10 }}
+          onClick={refetch}
+          disabled={loading}
+        >
+          {loading ? "Refreshing..." : "Refresh Data"}
+        </button>
         <span style={{ color: "#EE4266" }}>{error && <>Error loading: {error}</>}</span>
       </div>
-      <UserProgressChart data={data?.progress || demoProgress} />
+      <div className={anim.cardEntryAnimate} style={{ animationDelay: ".08s" }}>
+        <UserProgressChart data={data?.progress || demoProgress} />
+      </div>
       <ChartCard
         title="Physical Activity Log"
         description="Your recent workouts, daily step goal, and activity stats"
+        className={anim.cardEntryAnimate}
       >
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -63,7 +73,7 @@ function FitnessPage() {
             </thead>
             <tbody>
               {workouts.map((w, idx) => (
-                <tr key={idx}>
+                <tr key={idx} className={anim.cardEntryAnimate} style={{ animationDelay: `${.07 * idx}s` }}>
                   <td>{w.date}</td>
                   <td>{w.type}</td>
                   <td>{w.duration}</td>
@@ -119,7 +129,7 @@ function FitnessPage() {
             <option value="Moderate">Moderate</option>
             <option value="High">High</option>
           </select>
-          <button className="btn" type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+          <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
             Add
           </button>
         </form>

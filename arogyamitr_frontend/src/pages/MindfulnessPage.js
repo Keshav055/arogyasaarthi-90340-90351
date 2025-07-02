@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChartCard, UserProgressChart } from "../components/Charts";
 import { useMindfulnessDashboard } from "../api/mindfulness";
+import anim from "../MicroAnimations.module.css";
 
 /**
  * PUBLIC_INTERFACE
@@ -24,7 +25,6 @@ function MindfulnessPage() {
     { date: "2024-05-03", mood: "😄", notes: "Tried breath exercise, good mood" },
     { date: "2024-05-04", mood: "😔", notes: "Felt tired before meditation" }
   ];
-  // For demo/mock-add log UI
   const [log, setLog] = useState([]);
   const [newLog, setNewLog] = useState({ date: "", mood: "", notes: "" });
 
@@ -41,13 +41,23 @@ function MindfulnessPage() {
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
       <h2>Mindfulness</h2>
       <div style={{ marginBottom: 16 }}>
-        <button className="btn" style={{ marginRight: 10 }} onClick={refetch} disabled={loading}>{loading ? "Refreshing..." : "Refresh Data"}</button>
+        <button
+          className={anim.buttonHover}
+          style={{ marginRight: 10 }}
+          onClick={refetch}
+          disabled={loading}
+        >
+          {loading ? "Refreshing..." : "Refresh Data"}
+        </button>
         <span style={{ color: "#EE4266" }}>{error && <>Error loading: {error}</>}</span>
       </div>
-      <UserProgressChart data={moodData} />
+      <div className={anim.cardEntryAnimate} style={{ animationDelay: ".12s" }}>
+        <UserProgressChart data={moodData} />
+      </div>
       <ChartCard
         title="Mood & Journaling Log"
         description="Track your daily emotional wellness and mindfulness journaling entries."
+        className={anim.cardEntryAnimate}
       >
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -60,7 +70,7 @@ function MindfulnessPage() {
             </thead>
             <tbody>
             {journal.map((j, idx) => (
-              <tr key={idx}>
+              <tr key={idx} className={anim.cardEntryAnimate} style={{ animationDelay: `${.09 * idx}s` }}>
                 <td>{j.date}</td>
                 <td style={{ textAlign: "center", fontSize: "1.2em" }}>{j.mood}</td>
                 <td>{j.notes}</td>
@@ -101,7 +111,7 @@ function MindfulnessPage() {
             style={{ width: 180, fontSize: "1em", padding: 6, border: "1px solid #e0efeb", borderRadius: 6 }}
             maxLength={200}
           />
-          <button className="btn" type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+          <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
             Add
           </button>
         </form>
