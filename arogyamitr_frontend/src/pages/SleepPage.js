@@ -4,6 +4,24 @@ import { useSleepDashboard } from "../api/sleep";
 import anim from "../MicroAnimations.module.css";
 
 /**
+ * AvatarIcon - playful avatar or emoji for headings and widgets
+ */
+const AvatarIcon = ({ label, emoji }) => (
+  <span
+    role="img"
+    aria-label={label}
+    style={{
+      fontSize: "2.2rem",
+      verticalAlign: "middle",
+      marginRight: "0.7rem",
+      filter: "drop-shadow(1px 2px 1px #dbecfa96)"
+    }}
+  >
+    {emoji}
+  </span>
+);
+
+/**
  * PUBLIC_INTERFACE
  * SleepPage with weekly sleep analytics chart, interactive sleep log, and user input.
  */
@@ -31,7 +49,7 @@ function SleepPage() {
   const [newSleep, setNewSleep] = useState({ date: "", hours: "", quality: "", notes: "" });
 
   const sleepData = data?.weekTrend || demoSleep;
-  const nightRecords = data?.nights || log.length > 0 ? log : demoNights;
+  const nightRecords = (data && data.nights) || (log.length > 0 ? log : demoNights);
 
   function handleAddSleep(e) {
     e.preventDefault();
@@ -42,7 +60,10 @@ function SleepPage() {
 
   return (
     <div className="container" style={{ margin: "3rem auto", maxWidth: 680 }}>
-      <h2>Sleep Optimizer</h2>
+      <h2>
+        <AvatarIcon label="sleep" emoji="😴" />
+        Sleep Optimizer
+      </h2>
       <div style={{ marginBottom: 16 }}>
         <button
           className={anim.buttonHover}
@@ -58,7 +79,7 @@ function SleepPage() {
         <UserProgressChart data={sleepData} />
       </div>
       <ChartCard
-        title="Sleep Log (Past Week)"
+        title={<><AvatarIcon label="log" emoji="🛏️" /> Sleep Log (Past Week)</>}
         description="Review your nightly sleep duration, quality, and notes. Add nightly records for trending analytics."
         className={anim.cardEntryAnimate}
       >
@@ -66,10 +87,18 @@ function SleepPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th style={{ textAlign: "left" }}>Date</th>
-                <th>Hours</th>
-                <th>Quality</th>
-                <th style={{ textAlign: "left" }}>Notes</th>
+                <th style={{ textAlign: "left" }}>
+                  <AvatarIcon label="date" emoji="📅" />Date
+                </th>
+                <th>
+                  <AvatarIcon label="hours" emoji="⏰" />Hours
+                </th>
+                <th>
+                  <AvatarIcon label="quality" emoji="💤" />Quality
+                </th>
+                <th style={{ textAlign: "left" }}>
+                  <AvatarIcon label="notes" emoji="📝" />Notes
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -125,6 +154,7 @@ function SleepPage() {
             maxLength={180}
           />
           <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+            <AvatarIcon label="plus" emoji="➕" />
             Add
           </button>
         </form>

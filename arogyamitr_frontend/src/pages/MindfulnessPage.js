@@ -6,6 +6,24 @@ import CelebratePopup from "../components/CelebratePopup";
 import anim from "../MicroAnimations.module.css";
 
 /**
+ * AvatarIcon - playful avatar or emoji for headings and widgets
+ */
+const AvatarIcon = ({ label, emoji }) => (
+  <span
+    role="img"
+    aria-label={label}
+    style={{
+      fontSize: "2.2rem",
+      verticalAlign: "middle",
+      marginRight: "0.7rem",
+      filter: "drop-shadow(1px 2px 1px #ebe1f380)"
+    }}
+  >
+    {emoji}
+  </span>
+);
+
+/**
  * PUBLIC_INTERFACE
  * MindfulnessPage with mood chart, journaling log, and UI to add new log entries.
  * Now features refined instant playful feedback for achievements: first log, streak, or regular entry.
@@ -40,13 +58,11 @@ function MindfulnessPage() {
   // Returns true if this is user's first log ever in this session
   const isFirstLog = () =>
     (log.length === 0) ||
-    // If it's a demo/fallback log, only count user logs after first added
     (log.length === 1 && JSON.stringify(log[0]) !== JSON.stringify(newLog));
 
   // Detects streak (demo: 3+ logs in a row on unique dates; could improve with session/user data)
   const hasStreak = () => {
     if (log.length < 3) return false;
-    // Look for logs on 3 unique consecutive days (simple streak logic)
     const uniqueDates = [...new Set(log.map(entry => entry.date))];
     return uniqueDates.length >= 3;
   };
@@ -61,7 +77,6 @@ function MindfulnessPage() {
     setLog(updatedLog);
     setNewLog({ date: "", mood: "", notes: "" });
 
-    // Achievement celebration logic:
     if (log.length === 0) {
       setShowCelebrate({ visible: true, type: "first_log" });
     } else if (hasStreak()) {
@@ -106,7 +121,10 @@ function MindfulnessPage() {
       >
         {celebrateProps[celebrationType].message}
       </CelebratePopup>
-      <h2>Mindfulness</h2>
+      <h2>
+        <AvatarIcon label="mindfulness" emoji="🧘" />
+        Mindfulness & Meditation
+      </h2>
       <div style={{ marginBottom: 16 }}>
         <button
           className={anim.buttonHover}
@@ -122,7 +140,7 @@ function MindfulnessPage() {
         <UserProgressChart data={moodData} />
       </div>
       <ChartCard
-        title="Mood & Journaling Log"
+        title={<><AvatarIcon label="journal" emoji="💭" /> Mood & Journaling Log</>}
         description="Track your daily emotional wellness and mindfulness journaling entries."
         className={anim.cardEntryAnimate}
       >
@@ -130,9 +148,15 @@ function MindfulnessPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th style={{ textAlign: "left" }}>Date</th>
-                <th>Mood</th>
-                <th style={{ textAlign: "left" }}>Notes</th>
+                <th style={{ textAlign: "left" }}>
+                  <AvatarIcon label="date" emoji="🗓️" />Date
+                </th>
+                <th>
+                  <AvatarIcon label="mood" emoji="😊" />Mood
+                </th>
+                <th style={{ textAlign: "left" }}>
+                  <AvatarIcon label="notes" emoji="✍️" />Notes
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -179,6 +203,7 @@ function MindfulnessPage() {
             maxLength={200}
           />
           <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+            <AvatarIcon label="plus" emoji="➕" />
             Add
           </button>
         </form>

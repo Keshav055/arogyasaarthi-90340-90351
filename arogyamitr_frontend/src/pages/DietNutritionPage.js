@@ -5,6 +5,24 @@ import ConfettiCelebration from "../components/ConfettiCelebration";
 import CelebratePopup from "../components/CelebratePopup";
 import anim from "../MicroAnimations.module.css";
 
+/**
+ * AvatarIcon - playful avatar or emoji for headings and widgets
+ */
+const AvatarIcon = ({ label, emoji }) => (
+  <span
+    role="img"
+    aria-label={label}
+    style={{
+      fontSize: "2.2rem",
+      verticalAlign: "middle",
+      marginRight: "0.7rem",
+      filter: "drop-shadow(1px 2px 1px #ffde9c7a)"
+    }}
+  >
+    {emoji}
+  </span>
+);
+
 /*
  * --- MOCK DATA & REGIONAL RECIPES ---
  * (Re-inserted due to ref usage: INDIAN_REGIONAL_RECIPES & PERSONAL_SUGGESTION)
@@ -111,7 +129,7 @@ function DietNutritionPage() {
   const celebrateProps = {
     first_log: { icon: "🍚", message: <>First healthy meal logged! 🥇</> },
     streak: { icon: "🌟", message: <>Meal log streak! Consistent nutrition! 🎉</> },
-    generic: { icon: "🥗", message: <>Healthy Choice! +1 wellness point 🌱</> },
+    generic: { icon: "🥑", message: <>Healthy Choice! +1 wellness point 🌱</> },
   };
   const celebrationType = showCelebrate.type || "generic";
 
@@ -157,7 +175,10 @@ function DietNutritionPage() {
       >
         {celebrateProps[celebrationType].message}
       </CelebratePopup>
-      <h2>Diet & Nutrition</h2>
+      <h2>
+        <AvatarIcon label="nutrition" emoji="🥗" />
+        Diet & Nutrition
+      </h2>
       <p>
         Plan meals, browse Indian regional recipes, track hydration and nutrients, and add your own recipes.
         <br />Personalized meal planning made for India.
@@ -177,7 +198,7 @@ function DietNutritionPage() {
           disabled={mealLogged}
           onClick={handleLogMeal}
         >
-          {mealLogged ? "Healthy Meal Logged! 🥳" : "Log Healthy Meal"}
+          {mealLogged ? <>Healthy Meal Logged! <AvatarIcon label="party" emoji="🥳" /></> : <>Log Healthy Meal <AvatarIcon label="plus" emoji="➕" /></>}
         </button>
         {mealLogged && <span style={{ marginLeft: 11, color: "#4CA65A", fontWeight: 700 }}>Meal Logged!</span>}
       </div>
@@ -208,7 +229,7 @@ function DietNutritionPage() {
       </div>
       {/* --- Meal Plan Table/Card --- */}
       <ChartCard
-        title="Today's Meal Plan"
+        title={<><AvatarIcon label="meal plan" emoji="🍽️" /> Today's Meal Plan</>}
         description="Calories, macronutrients, and meal details"
         className={anim.cardEntryAnimate}
       >
@@ -216,12 +237,24 @@ function DietNutritionPage() {
           <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: 7 }}>
             <thead>
               <tr style={{ color: "#207761", fontWeight: 700 }}>
-                <th>Meal</th>
-                <th>Title</th>
-                <th>Cals</th>
-                <th>Macros</th>
-                <th>Region</th>
-                <th>Details</th>
+                <th>
+                  <AvatarIcon label="meal" emoji="🍴" />Meal
+                </th>
+                <th>
+                  <AvatarIcon label="dish" emoji="🍲" />Title
+                </th>
+                <th>
+                  <AvatarIcon label="calories" emoji="🔥" />Cals
+                </th>
+                <th>
+                  <AvatarIcon label="nutrients" emoji="🌾" />Macros
+                </th>
+                <th>
+                  <AvatarIcon label="region" emoji="🗺️" />Region
+                </th>
+                <th>
+                  <AvatarIcon label="details" emoji="🔎" />Details
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -253,7 +286,9 @@ function DietNutritionPage() {
                         cursor: "pointer"
                       }}
                       onClick={() => setViewRecipe({ ...mp, id: mp.recipeId })}
-                    >View</button>
+                    >
+                      <AvatarIcon label="view" emoji="👀" /> View
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -267,7 +302,7 @@ function DietNutritionPage() {
       </ChartCard>
       {/* --- Recipe Browser/Search/Filter --- */}
       <ChartCard
-        title="Indian Regional Recipe Explorer"
+        title={<><AvatarIcon label="recipes" emoji="🥘" /> Indian Regional Recipe Explorer</>}
         description="Browse curated, regional, and personal recipes for any meal type"
         className={anim.cardEntryAnimate}
       >
@@ -276,7 +311,9 @@ function DietNutritionPage() {
           className={`${anim.buttonHover} btn`}
           style={{ marginBottom: 11, borderRadius: 9 }}
           onClick={() => setAddModalOpen(true)}
-        >+ Add Your Recipe</button>
+        >
+          <AvatarIcon label="add" emoji="➕" /> Add Your Recipe
+        </button>
         {filteredRecipes.length === 0 && <span style={{ color: "#E87A41" }}>No recipes found.</span>}
         <div>
           {filteredRecipes.map((r, idx) =>
@@ -287,7 +324,6 @@ function DietNutritionPage() {
       {/* --- Modal Portals --- */}
       <AddRecipeModal open={addModalOpen} onClose={() => setAddModalOpen(false)} onSave={handleAddRecipe} />
       <RecipeDetailModal recipe={viewRecipe} open={!!viewRecipe} onClose={() => setViewRecipe(null)} />
-      {/* --- Nutrition logging, hydration log, barcode scanning, reminders, etc. can be added below --- */}
     </div>
   );
 }

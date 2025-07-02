@@ -6,6 +6,24 @@ import CelebratePopup from "../components/CelebratePopup";
 import anim from "../MicroAnimations.module.css";
 
 /**
+ * AvatarIcon - playful avatar or emoji for headings and widgets
+ */
+const AvatarIcon = ({ label, emoji }) => (
+  <span
+    role="img"
+    aria-label={label}
+    style={{
+      fontSize: "2.2rem",
+      verticalAlign: "middle",
+      marginRight: "0.7rem",
+      filter: "drop-shadow(1px 2px 1px #cbeccd7a)"
+    }}
+  >
+    {emoji}
+  </span>
+);
+
+/**
  * PUBLIC_INTERFACE
  * FitnessPage showing stats, dynamic chart, interactive exercise log, and now multi-achievement celebration logic.
  */
@@ -100,7 +118,10 @@ function FitnessPage() {
       >
         {celebrateProps[celebrationType].message}
       </CelebratePopup>
-      <h2>Fitness</h2>
+      <h2>
+        <AvatarIcon label="fitness" emoji="🏋️‍♂️" />
+        Fitness Tracker
+      </h2>
       <div style={{ marginBottom: 16 }}>
         <button
           className={anim.buttonHover}
@@ -116,7 +137,7 @@ function FitnessPage() {
         <UserProgressChart data={data?.progress || demoProgress} />
       </div>
       <ChartCard
-        title="Physical Activity Log"
+        title={<><AvatarIcon label="log" emoji="📋" />Physical Activity Log</>}
         description="Your recent workouts, daily step goal, and activity stats"
         className={anim.cardEntryAnimate}
       >
@@ -124,11 +145,21 @@ function FitnessPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th style={{ textAlign: "left" }}>Date</th>
-                <th>Type</th>
-                <th>Duration (min)</th>
-                <th>Steps</th>
-                <th>Intensity</th>
+                <th style={{ textAlign: "left" }}>
+                  <AvatarIcon label="date" emoji="📅" />Date
+                </th>
+                <th>
+                  <AvatarIcon label="type" emoji="🤸" />Type
+                </th>
+                <th>
+                  <AvatarIcon label="duration" emoji="⏱️" />Duration (min)
+                </th>
+                <th>
+                  <AvatarIcon label="steps" emoji="👣" />Steps
+                </th>
+                <th>
+                  <AvatarIcon label="energy" emoji="💪" />Intensity
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -190,6 +221,7 @@ function FitnessPage() {
             <option value="High">High</option>
           </select>
           <button className={`${anim.buttonHover} btn`} type="submit" style={{ borderRadius: 8, padding: "6px 18px" }}>
+            <AvatarIcon label="plus" emoji="➕" />
             Add
           </button>
         </form>
