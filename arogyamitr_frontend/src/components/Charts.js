@@ -18,24 +18,77 @@ export function ChartCard({ title, description, children }) {
       border: "1.2px solid var(--border)",
       transition: "background 0.21s, color 0.15s",
     }}>
-      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--text-primary)" }}>{title}</h3>
-      {description && <div style={{ marginBottom: 12, color: "var(--text-secondary)" }}>{description}</div>}
+      <h3 style={{ margin: "0 0 0.4rem 0", color: "var(--primary-text)" }}>{title}</h3>
+      {description && <div style={{ marginBottom: 12, color: "var(--inactive-gray)" }}>{description}</div>}
       <div style={{ width: "100%", height: 240 }}>{children}</div>
     </div>
   );
 }
 
-/** Modern accessible chart palette for both light/dark; always uses theme variables for backgrounds/lines for contrast. */
-export const chartPalette = [
-  "var(--primary)",
-  "var(--accent)",
-  "var(--secondary)",
-  "var(--accent-alt)",
-  "var(--success)",
-  "var(--danger)",
-  "var(--secondary-light)",
-  "var(--bg-secondary)" // fallback/neutral
-];
+/**
+ * DonutChart: Accessible donut chart following theme variables.
+ * Main overlay and legends use high-contrast text for readability.
+ */
+export const DonutChart = ({ consumed, total }) => {
+  const percent = Math.round((consumed / total) * 100);
+
+  const arcConsumed = "var(--accent-green)";
+  const arcRemaining = "var(--chart-inactive-bg)";
+
+  const r = 42, stroke = 12, c = 54;
+  const circumference = 2 * Math.PI * r;
+  const arc1 = (circumference * percent) / 100;
+
+  return (
+    <div style={{ position: "relative", width: 140, height: 140 }}>
+      <svg width="140" height="140">
+        <circle
+          r={r}
+          cx={c}
+          cy={c}
+          fill="none"
+          stroke={arcRemaining}
+          strokeWidth={stroke}
+        />
+        <circle
+          r={r}
+          cx={c}
+          cy={c}
+          fill="none"
+          stroke={arcConsumed}
+          strokeWidth={stroke}
+          strokeDasharray={`${arc1},${circumference - arc1}`}
+          strokeLinecap="round"
+        />
+      </svg>
+      {/* Overlay percentage - always readable */}
+      <div className="chart-label-overlay">
+        {percent}%
+      </div>
+      {/* Legends */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", marginRight: 18 }}>
+          <span style={{
+            width: 16, height: 16,
+            display: "inline-block",
+            background: "var(--accent-green)",
+            borderRadius: 3, marginRight: 6
+          }}></span>
+          <span className="chart-legend-active">Consumed</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span style={{
+            width: 16, height: 16,
+            display: "inline-block",
+            background: "var(--chart-inactive-bg)",
+            borderRadius: 3, marginRight: 6
+          }}></span>
+          <span className="chart-legend">Remaining</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 /**
  * PUBLIC_INTERFACE
@@ -48,23 +101,23 @@ export function UserProgressChart({ data }) {
       <ResponsiveContainer>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-          <XAxis dataKey="name" tick={{ fill: "var(--text-primary)" }} />
-          <YAxis domain={[0,100]} tick={{ fill: "var(--text-primary)" }} />
+          <XAxis dataKey="name" tick={{ fill: "var(--primary-text)" }} />
+          <YAxis domain={[0,100]} tick={{ fill: "var(--primary-text)" }} />
           <Tooltip
             contentStyle={{
               background: "var(--card-bg)",
-              color: "var(--text-primary)",
+              color: "var(--primary-text)",
               border: "1px solid var(--border)"
             }}
-            itemStyle={{ color: "var(--text-primary)" }}
-            labelStyle={{ color: "var(--text-secondary)" }}
+            itemStyle={{ color: "var(--primary-text)" }}
+            labelStyle={{ color: "var(--inactive-gray)" }}
           />
           <Line
             type="monotone"
             dataKey="score"
             stroke="var(--primary)"
             strokeWidth={3}
-            dot={{ r: 5, fill: "var(--accent-alt)" }}
+            dot={{ r: 5, fill: "var(--accent)" }}
           />
         </LineChart>
       </ResponsiveContainer>
@@ -83,10 +136,10 @@ export function WellnessInfographic({ data }) {
       <ResponsiveContainer>
         <RadarChart data={data}>
           <PolarGrid stroke="var(--border)" />
-          <PolarAngleAxis dataKey="aspect" tick={{ fill: "var(--text-primary)" }} />
-          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={ { fill: "var(--text-soft)" }} tickCount={6} />
-          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
-          <Radar dataKey="value" stroke="var(--accent-alt)" fill="var(--accent-alt)" fillOpacity={0.35} />
+          <PolarAngleAxis dataKey="aspect" tick={{ fill: "var(--primary-text)" }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={ { fill: "var(--text-muted)" }} tickCount={6} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />
+          <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.35} />
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -104,16 +157,16 @@ export function HealthTipsBar({ data }) {
       <ResponsiveContainer>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-          <XAxis dataKey="tip" tick={{ fill: "var(--text-secondary)", fontSize: 11 }} />
-          <YAxis allowDecimals={false} tick={{ fill: "var(--text-secondary)" }} />
+          <XAxis dataKey="tip" tick={{ fill: "var(--inactive-gray)", fontSize: 11 }} />
+          <YAxis allowDecimals={false} tick={{ fill: "var(--inactive-gray)" }} />
           <Tooltip
             contentStyle={{
               background: "var(--card-bg)",
-              color: "var(--text-primary)",
+              color: "var(--primary-text)",
               border: "1px solid var(--border)",
             }}
-            itemStyle={{ color: "var(--text-primary)" }}
-            labelStyle={{ color: "var(--text-secondary)" }}
+            itemStyle={{ color: "var(--primary-text)" }}
+            labelStyle={{ color: "var(--inactive-gray)" }}
           />
           <Bar dataKey="users" fill="var(--secondary)" />
         </BarChart>
@@ -148,11 +201,11 @@ export function HydrationPie({ value, goal }) {
             {data.map((entry, idx) =>
               <Cell
                 key={`cell-${idx}`}
-                fill={idx === 0 ? "var(--primary)" : "var(--bg-secondary)"}
+                fill={idx === 0 ? "var(--primary)" : "var(--chart-inactive-bg)"}
               />
             )}
           </Pie>
-          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />
           <Legend />
         </PieChart>
       </ResponsiveContainer>
@@ -180,10 +233,10 @@ export function NutrientRadar({ data }) {
       <ResponsiveContainer>
         <RadarChart data={data}>
           <PolarGrid stroke="var(--border)" />
-          <PolarAngleAxis dataKey="name" tick={{ fill: "var(--text-primary)" }}/>
+          <PolarAngleAxis dataKey="name" tick={{ fill: "var(--primary-text)" }}/>
           <PolarRadiusAxis angle={25}
             domain={[0, data.reduce((a, b) => Math.max(a, b.goal), 0)]}
-            tick={{ fill: "var(--text-soft)" }}
+            tick={{ fill: "var(--text-muted)" }}
           />
           <Radar name="Intake"
             dataKey="intake"
@@ -198,7 +251,7 @@ export function NutrientRadar({ data }) {
             fillOpacity={0.23}
           />
           <Legend />
-          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--text-primary)", border: "1px solid var(--border)" }} />
+          <Tooltip contentStyle={{ background: "var(--card-bg)", color: "var(--primary-text)", border: "1px solid var(--border)" }} />
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>

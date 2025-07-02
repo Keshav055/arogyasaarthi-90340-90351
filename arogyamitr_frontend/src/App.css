@@ -1,4 +1,53 @@
-/* Only basic global overrides needed. Main color system handled in AppTheme.module.css */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: var(--background);
+  color: var(--primary-text);
+}
+
+/* Card styling (rely on theme but ensure color override for text) */
+.card {
+  background: var(--card-bg);
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+/* Accessible chart/legend/overlay text styles */
+.chart-legend {
+  color: var(--inactive-gray);
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.chart-legend-active,
+.chart-label-active {
+  color: var(--primary-text);
+  font-weight: 700;
+}
+
+.chart-label-overlay {
+  color: var(--primary-text) !important;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 2px #fff, 0 0 6px #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Accessibility: focus outline */
+:focus-visible {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+}
+
+/* Theme toggle and responsive tweaks unchanged */
 
 .theme-toggle {
   position: absolute;
